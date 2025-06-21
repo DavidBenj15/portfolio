@@ -1,0 +1,18 @@
+{% macro position(name, sdate, edate, desc) %}
+        <div class="exp">
+            <p class="pos b">{{name}}</p>
+            <p class="date i">{{sdate}} - {{edate}}</p>
+            <ul class="desc">
+                {% for bp in desc%}
+                    <li>{{bp}}</li>
+                {% endfor %}
+            </ul> 
+        </div>
+{% endmacro %}
+
+{% macro menu() %}
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/resume">Work Exp</a> |
+    </nav>
+{% endmacro %}
