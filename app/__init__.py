@@ -1,6 +1,6 @@
 import os
 import datetime
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify, abort
 from dotenv import load_dotenv
 from . import testdata
 from peewee import *
@@ -79,3 +79,14 @@ def get_timeline_post():
             for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())
         ]
     }
+
+@app.route('/api/timeline_post/<int:post_id>', methods=['DELETE'])
+def delete_timeline_post(post_id):
+    try:
+        post = TimelinePost.get_by_id(post_id)
+        post.delete_instance()
+        return jsonify({
+            'message': f'Post {post_id} deleted successfully'
+        })
+    except TimelinePost.DoesNotExist:
+        abort(404, description=f'Post with ID {post_id} not found')
