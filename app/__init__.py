@@ -63,6 +63,12 @@ def resume():
 def hobbies():
     return render_template('hobbies.html', title="Hobbies", hobbies=testdata.hobbiesData)
 
+@app.route('/timeline')
+def timeline():
+    return render_template('timeline.html', title='Timeline')
+
+# API
+
 @app.route('/api/timeline_post', methods=['POST'])
 def post_timeline_post():
     name = request.form['name']
