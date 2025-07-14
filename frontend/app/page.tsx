@@ -1,30 +1,13 @@
 import Section from '@/components/ui/section';
 import Container from '@/components/ui/container';
 import Navigation from '@/components/ui/navigation';
+import Hero from '@/components/hero';
 
 export default function Home() {
   return (
     <main className="relative">
       <Navigation />
-      {/* Hero Section */}
-      <Section id="hero" className="flex items-center justify-center pt-16">
-        <Container className="text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-            David Benjamin
-          </h1>
-          <p className="text-xl sm:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Full-stack developer passionate about creating beautiful, functional, and user-centered digital experiences.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors">
-              View My Work
-            </button>
-            <button className="px-8 py-3 border border-border text-foreground rounded-lg font-medium hover:bg-muted transition-colors">
-              Get In Touch
-            </button>
-          </div>
-        </Container>
-      </Section>
+      <Hero />
 
       {/* About Section */}
       <Section id="about" className="bg-muted/50">

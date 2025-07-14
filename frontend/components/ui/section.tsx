@@ -20,15 +20,15 @@ const Section: React.FC<SectionProps> = ({
 }) => {
   const paddingClasses = {
     none: '',
-    sm: 'px-4 py-8 sm:px-6 sm:py-12',
-    md: 'px-6 py-12 sm:px-8 sm:py-16',
-    lg: 'px-8 py-16 sm:px-12 sm:py-20 lg:px-16 lg:py-24',
-    xl: 'px-12 py-20 sm:px-16 sm:py-24 lg:px-20 lg:py-32',
+    sm: 'px-4 sm:px-6 sm:py-12',
+    md: 'px-6 sm:px-8 sm:py-16',
+    lg: 'px-8 sm:px-12 sm:py-20 lg:px-16 lg:py-24',
+    xl: 'px-12 sm:px-16 sm:py-24 lg:px-20 lg:py-32',
   };
 
   const sectionClasses = cn(
-    'relative w-full',
-    fullHeight && 'min-h-screen',
+    'w-full box-border',
+    fullHeight && 'h-dvh',
     paddingClasses[padding],
     className
   );

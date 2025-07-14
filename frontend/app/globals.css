@@ -43,7 +43,8 @@
   --font-alliance: "Alliance No.2", system-ui, -apple-system, sans-serif;
   
   /* Custom Design System Colors */
-  --background: #1E1E1E;
+  --background: #0B1215;
+  /* --background: #FFFFFF; */
   --foreground: #FFFFFF;
   --primary: #68ACE5;
   --secondary: #5C5C5C;
@@ -96,4 +97,5 @@
   .text-balance {
     text-wrap: balance;
   }
+
 }
