@@ -1,6 +1,21 @@
 import Section from "@/components/ui/section";
 import Container from "./ui/container";
 import { Card, CardHeader, CardBody, CardFooter } from "@heroui/card";
+import { Divider } from "@heroui/divider";
+import { Chip } from "@heroui/chip";
+
+const courses = [
+    {
+        title: 'Data Structures',
+
+    },
+    {
+        title: 'Intro Algorithms',
+    },
+    {
+        title: 'Software System Design'
+    }
+]
 
 const About = () => {
     return (
@@ -8,6 +23,15 @@ const About = () => {
             <Container>
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <div>
+                        <Card className="bg-card border border-border">
+                            <CardBody>
+                                <div className="h-[400px] bg-muted flex items-center justify-center">
+                                    <span className="text-muted-foreground">About Image</span>
+                                </div>
+                            </CardBody>
+                        </Card>
+                    </div>
+                    <div className="">
                         <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
                             About Me
                         </h2>
@@ -21,15 +45,6 @@ const About = () => {
                             contributing to open source projects, or sharing knowledge with
                             the developer community.
                         </p>
-                    </div>
-                    <div className="">
-                        <Card>
-                            <CardHeader>
-                                <h3>
-                                    Education
-                                </h3>
-                            </CardHeader>
-                        </Card>
                     </div>
                 </div>
             </Container>
