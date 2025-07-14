@@ -2,7 +2,26 @@ import Section from '@/components/ui/section';
 import { Image } from '@heroui/image';
 import NextImage from "next/image";
 
+const images = [
+    {
+        src: '/images/jhu_crest_colorized.png',
+    },
+    {
+        src: '/images/nasa_logo.png',
+    },
+    {
+        src: '/images/meta.svg',
+        height: 35,
+    },
+    {
+        src: '/images/mlh.png',
+        height: 35,
+    }
+]
+
 const Hero = () => {
+    const defaultHeight = 50; // Set your default height here
+
     return (
         <Section id="hero" className="flex flex-col items-center justify-start bg-background" fullHeight={true} container={true}>
             <div className="grid md:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-8">
@@ -19,27 +38,33 @@ const Hero = () => {
                             <span className="text-primary">DevOps</span>.
                         </p>
                     </div>
-                    <div className="border-t border-border pt-6 pb-10">
-                        <p className="text-lg text-muted-foreground">
-                            Computer Science '27' @ <span className="text-primary">Johns Hopkins University</span>
-                        </p>
-                        <p className="text-lg text-muted-foreground">
-                            Software Engineering Intern @ <span className="text-primary">NASA</span>
-                        </p>
-                        <p className="text-lg text-muted-foreground">
-                            Production Engineering Fellow @ <span className="text-primary">Meta x Major League Hacking</span>
-                        </p>
+                    <div className="border-t border-border pt-6 pb-10 flex items-center flex-row gap-4">
+                        {images.map((image) => {
+                            const imageHeight = image.height || defaultHeight;
+                            return (
+                                <Image
+                                    key={image.src}
+                                    as={NextImage}
+                                    isBlurred={true}
+                                    src={image.src}
+                                    alt="David Benjamin"
+                                    width={100}
+                                    height={imageHeight}
+                                    style={{ width: 'auto', height: `${imageHeight}px`, borderRadius: 0 }}
+                                />
+                            );
+                        })}
                     </div>
                 </div>
-                
+
                 {/* Right column - Image placeholder */}
                 <div className="flex h-full">
-                    <Image 
+                    <Image
                         as={NextImage}
-                        isBlurred={true} 
-                        src="/images/hero-me.png" 
-                        alt="David Benjamin" 
-                        className='m-10' 
+                        isBlurred={true}
+                        src="/images/hero-me.png"
+                        alt="David Benjamin"
+                        className='m-10'
                         width={500}
                         height={500}
                     />

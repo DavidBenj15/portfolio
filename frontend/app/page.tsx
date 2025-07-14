@@ -2,60 +2,14 @@ import Section from '@/components/ui/section';
 import Container from '@/components/ui/container';
 import Navigation from '@/components/ui/navigation';
 import Hero from '@/components/hero';
+import About from '@/components/about';
 
 export default function Home() {
   return (
     <main className="relative">
       <Navigation />
       <Hero />
-
-      {/* About Section */}
-      <Section id="about" className="bg-muted/50">
-        <Container>
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-                About Me
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                I'm a passionate developer with expertise in modern web technologies. 
-                I love building applications that solve real problems and provide 
-                exceptional user experiences.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                When I'm not coding, you can find me exploring new technologies, 
-                contributing to open source projects, or sharing knowledge with 
-                the developer community.
-              </p>
-            </div>
-            <div className="bg-card p-8 rounded-lg border border-border">
-              <h3 className="text-xl font-semibold text-foreground mb-4">
-                Skills & Technologies
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <h4 className="font-medium text-foreground">Frontend</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>React & Next.js</li>
-                    <li>TypeScript</li>
-                    <li>Tailwind CSS</li>
-                    <li>HTML & CSS</li>
-                  </ul>
-                </div>
-                <div className="space-y-2">
-                  <h4 className="font-medium text-foreground">Backend</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    <li>Node.js</li>
-                    <li>Python</li>
-                    <li>PostgreSQL</li>
-                    <li>REST APIs</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </Section>
+      <About />
 
       {/* Projects Section */}
       <Section id="projects">
