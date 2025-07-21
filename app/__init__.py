@@ -9,15 +9,19 @@ from playhouse.shortcuts import model_to_dict
 load_dotenv()
 app = Flask(__name__)
 
-mydb = MySQLDatabase(
-    os.getenv("MYSQL_DATABASE"),
-    user=os.getenv("MYSQL_USER"),
-    password=os.getenv("MYSQL_PASSWORD"),
-    host=os.getenv("MYSQL_HOST"),
-    port=3306
-)
-
-print(mydb)
+# Only create the database connection if we're not in a test environment
+if not os.getenv('TESTING'):
+    mydb = MySQLDatabase(
+        os.getenv("MYSQL_DATABASE"),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        host=os.getenv("MYSQL_HOST"),
+        port=3306
+    )
+    print(mydb)
+else:
+    # Use a dummy database for testing
+    mydb = None
 
 class TimelinePost(Model):
     name = CharField()
@@ -28,8 +32,20 @@ class TimelinePost(Model):
     class Meta:
         database = mydb
 
-mydb.connect()
-mydb.create_tables([TimelinePost])
+def initialize_db():
+    """Initialize database connection and create tables"""
+    if mydb is None or not mydb.is_closed():
+        return  # Already connected or no database configured
+    
+    try:
+        mydb.connect()
+        mydb.create_tables([TimelinePost])
+    except Exception as e:
+        print(f"Database connection failed: {e}")
+
+# Initialize database when the app starts (only if not testing)
+if not os.getenv('TESTING'):
+    initialize_db()
 
 @app.route('/')
 def index():
