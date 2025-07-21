@@ -1,4 +1,4 @@
-# test_db.py
+# tests/test_db.py
 
 import os
 import unittest
@@ -6,7 +6,7 @@ from peewee import *
 from datetime import datetime
 
 # Set testing env before importing app, no .env needed
-os.environ['TESTING'] = '1'
+os.environ['TESTING'] = 'true'
 
 from app import TimelinePost
 
