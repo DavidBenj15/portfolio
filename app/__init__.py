@@ -9,18 +9,17 @@ from playhouse.shortcuts import model_to_dict
 load_dotenv()
 app = Flask(__name__)
 
-# Only create the database connection if we're not in a test environment
 if os.getenv("TESTING") == "true":
     print("Running in test mode")
     mydb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
 else:
-    mydb = MySQLDatabase(
-        os.getenv("MYSQL_DATABASE"),
+    mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
         user=os.getenv("MYSQL_USER"),
         password=os.getenv("MYSQL_PASSWORD"),
         host=os.getenv("MYSQL_HOST"),
-        port=3306
-    )
+        port=3306)
+
+# print(mydb)
 
 class TimelinePost(Model):
     name = CharField()
@@ -31,20 +30,8 @@ class TimelinePost(Model):
     class Meta:
         database = mydb
 
-def initialize_db():
-    """Initialize database connection and create tables"""
-    if mydb is None or not mydb.is_closed():
-        return  # Already connected or no database configured
-    
-    try:
-        mydb.connect()
-        mydb.create_tables([TimelinePost])
-    except Exception as e:
-        print(f"Database connection failed: {e}")
-
-# Initialize database when the app starts (only if not testing)
-if not os.getenv('TESTING'):
-    initialize_db()
+mydb.connect()
+mydb.create_tables([TimelinePost])
 
 @app.route('/')
 def index():
@@ -103,6 +90,7 @@ def post_timeline_post():
 
 @app.route('/api/timeline_post', methods=['GET'])
 def get_timeline_post():
+    print('ENDPOINT HIT')
     return {
         'timeline_posts': [
             model_to_dict(p)
