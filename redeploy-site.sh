@@ -14,23 +14,16 @@ echo "Fetching latest changes from GitHub..."
 git fetch && git reset origin/main --hard
 
 if [ ! -f ".env" ]; then
-	pwd
-	ls -la
-	echo "Error: .env file not found. Exiting."
+	echo "Error: could not find file '.env'. Exiting."
 	exit 1
 fi
 
-if [ ! -d python3-virtualenv ]; then
-	echo "Could not find directory 'python3-virtualenv'"
-	echo "Creating new virtual environment 'python3-virtualenv'..."
-	python -m venv python3-virtualenv
+if [ ! -f "docker-compose.prod.yml" ]; then
+	echo "Error: could not find file 'docker-compose.prod.yml'. Exiting."
+	exit 1
 fi
 
-echo "Activating virtual environment and installing dependencies..."
-source python3-virtualenv/bin/activate
-pip3 install -r requirements.txt
-
-echo "Restarting 'myportfolio.service' service..."
-systemctl restart myportfolio.service
+docker compose -f docker-compose.prod.yml down
+docker compose -f docker-compose.prod.yml up -d --build
 
 echo "Success! Portfolio has been successfully redeployed."
