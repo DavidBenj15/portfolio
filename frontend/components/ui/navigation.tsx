@@ -1,7 +1,6 @@
 "use client";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@heroui/navbar";
 import { Link } from "@heroui/link";
-import { Button } from "@heroui/button";
 
 const navItems = [
   {
@@ -16,9 +15,13 @@ const navItems = [
     name: "Education",
     link: "/education"
   },
+  // {
+  //   name: "Projects",
+  //   link: "/projects"
+  // },
   {
-    name: "Projects",
-    link: "/projects"
+    name: "Timeline",
+    link: "/timeline"
   }
 ]
 
