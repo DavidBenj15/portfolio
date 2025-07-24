@@ -153,7 +153,7 @@ const courseCategories = [
 
 const Skills = () => {
     return (
-        < Section id="about" className="bg-muted/50" >
+        <Section id="about" className="bg-muted/50" >
             <Container>
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <div>

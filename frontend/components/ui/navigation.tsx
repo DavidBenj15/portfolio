@@ -5,16 +5,20 @@ import { Button } from "@heroui/button";
 
 const navItems = [
   {
-    name: "Home"
+    name: "Home",
+    link: "/"
   },
   {
-    name: "About"
+    name: "Experience",
+    link: "/experience"
   },
   {
-    name: "Experience"
+    name: "Education",
+    link: "/education"
   },
   {
-    name: "Projects"
+    name: "Projects",
+    link: "/projects"
   }
 ]
 
@@ -25,7 +29,7 @@ const Navigation = () => {
         {
           navItems.map((item) => (
             <NavbarItem key={item.name}>
-              <Link color="foreground" href="#">
+              <Link color="foreground" href={item.link}>
                 {item.name.toUpperCase()}
               </Link>
             </NavbarItem>
