@@ -1,38 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin '../hero.ts';
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@variant dark (&:is(.dark *));
 
-/* Font declarations */
-@font-face {
-  font-family: "Alliance No.2";
-  src: url("/fonts/AllianceNo2Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+@theme {
+  /* Custom font family */
+  --font-alliance: 'Alliance No.2', system-ui, -apple-system, sans-serif;
+
+  /* Convert CSS variables to Tailwind theme colors */
+  --color-background: #0b1215;
+  --color-foreground: #ffffff;
+  --color-primary: #68ace5;
+  --color-secondary: #5c5c5c;
+  --color-accent: #68ace5;
+  --color-muted: #2a2a2a;
+  --color-muted-foreground: #5c5c5c;
+  --color-border: #3a3a3a;
+  --color-ring: #68ace5;
+  --color-input: #2a2a2a;
+  --color-card: #2a2a2a;
+  --color-card-foreground: #ffffff;
+  --color-popover: #2a2a2a;
+  --color-popover-foreground: #ffffff;
+  --color-destructive: #ef4444;
+
+  /* Custom radius */
+  --radius: 0.625rem;
 }
 
+@layer utilities {
 
-:root {
-  --radius: 0.625rem;
-  --font-alliance: "Alliance No.2", system-ui, -apple-system, sans-serif;
-  
-  /* Custom Design System Colors */
-  --background: #0B1215;
-  /* --background: #FFFFFF; */
-  --foreground: #FFFFFF;
-  --primary: #68ACE5;
-  --secondary: #5C5C5C;
-  --accent: #68ACE5;
-  --muted: #2A2A2A;
-  --muted-foreground: #5C5C5C;
-  --border: #3A3A3A;
-  --ring: #68ACE5;
-  --input: #2A2A2A;
-  --card: #2A2A2A;
-  --card-foreground: #FFFFFF;
-  --popover: #2A2A2A;
-  --popover-foreground: #FFFFFF;
-  --destructive: #EF4444;
+  /* Font declarations */
+  @font-face {
+    font-family: 'Alliance No.2';
+    src: url('/fonts/AllianceNo2Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Keep CSS variables for direct usage if needed */
+  :root {
+    --radius: 0.625rem;
+    --font-alliance: 'Alliance No.2', system-ui, -apple-system, sans-serif;
+
+    /* Keep these if you need to reference them directly in your CSS */
+    --background: #0b1215;
+    --foreground: #ffffff;
+    --primary: #68ace5;
+    --secondary: #5c5c5c;
+    --accent: #68ace5;
+    --muted: #2a2a2a;
+    --muted-foreground: #5c5c5c;
+    --border: #3a3a3a;
+    --ring: #68ace5;
+    --input: #2a2a2a;
+    --card: #2a2a2a;
+    --card-foreground: #ffffff;
+    --popover: #2a2a2a;
+    --popover-foreground: #ffffff;
+    --destructive: #ef4444;
+  }
 }
 
 @layer base {
@@ -40,11 +68,11 @@
     border-color: var(--border);
     outline-color: color-mix(in srgb, var(--ring) 50%, transparent);
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     background-color: var(--background);
     color: var(--foreground);
@@ -52,21 +80,21 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   /* Custom scrollbar styling */
   ::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   ::-webkit-scrollbar-track {
     background-color: var(--muted);
   }
-  
+
   ::-webkit-scrollbar-thumb {
     background-color: var(--secondary);
     border-radius: 9999px;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
     background-color: var(--accent);
   }
@@ -76,5 +104,4 @@
   .text-balance {
     text-wrap: balance;
   }
-
 }
