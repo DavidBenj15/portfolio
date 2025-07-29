@@ -1,14 +1,16 @@
+import { TimelineResponse, CreatePostResponse, CreatePostData } from '../types/timeline';
+
 // lib/api/timeline.js
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE;
+const baseUrl = process.env.URL || 'http://localhost:5000';
 
 /**
  * Get all timeline posts from the API
- * @returns {Promise<Object>} Response object containing timeline_posts array
+ * @returns {Promise<TimelineResponse>} Response object containing timeline_posts array
  * @throws {Error} If the API request fails
  */
-export async function getTimelinePosts() {
+export async function getTimelinePosts(): Promise<TimelineResponse> {
     if (!baseUrl) {
-        throw new Error('API base URL not configured. Please set NEXT_PUBLIC_API_BASE in your .env file.');
+        throw new Error('API base URL not configured. Please set URL in your .env file.');
     }
 
     try {
@@ -39,16 +41,13 @@ export async function getTimelinePosts() {
 
 /**
  * Create a new timeline post
- * @param {Object} postData - The post data
- * @param {string} postData.name - Author name
- * @param {string} postData.email - Author email
- * @param {string} postData.content - Post content
- * @returns {Promise<Object>} Response object from the API
+ * @param {CreatePostData} postData - The post data
+ * @returns {Promise<CreatePostResponse>} Response object from the API
  * @throws {Error} If the API request fails
  */
-export async function createTimelinePost(postData: { name: string, email: string, content: string }) {
+export async function createTimelinePost(postData: CreatePostData): Promise<CreatePostResponse> {
     if (!baseUrl) {
-        throw new Error('API base URL not configured. Please set NEXT_PUBLIC_API_BASE in your .env file.');
+        throw new Error('API base URL not configured. Please set URL in your .env file.');
     }
 
     // Validate input
@@ -57,12 +56,15 @@ export async function createTimelinePost(postData: { name: string, email: string
     }
 
     try {
+        // Create FormData object
+        const formData = new FormData();
+        formData.append('name', postData.name);
+        formData.append('email', postData.email);
+        formData.append('content', postData.content);
+
         const response = await fetch(`${baseUrl}/api/timeline_post`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(postData),
+            body: formData,
         });
 
         if (!response.ok) {

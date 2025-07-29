@@ -9,29 +9,10 @@ import { Input, Textarea } from "@heroui/input";
 import { Button } from "@heroui/button";
 import Navigation from "@/components/ui/navigation";
 import { useState, useEffect } from "react";
-
-// Mock data for demonstration - replace with actual API calls
-const mockPosts = [
-    {
-        id: 1,
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-        content: 'This is a sample timeline post to demonstrate the functionality. Great work on the new design!',
-        created_at: '2025-01-20T10:30:00Z'
-    },
-    {
-        id: 2,
-        name: 'Jane Smith',
-        email: 'jane.smith@example.com',
-        content: 'Another example post with some longer content to show how the timeline handles different content lengths. The responsive design looks fantastic across all devices.',
-        created_at: '2025-01-19T15:45:00Z'
-    }
-];
+import { useTimeline } from "../hooks/useTimeline";
 
 export default function Timeline() {
-    const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [submitting, setSubmitting] = useState(false);
+    const { posts, loading, submitting, error, createPost, clearError } = useTimeline();
     const [message, setMessage] = useState({ text: '', type: '' });
     const [formData, setFormData] = useState({
         name: '',
@@ -39,31 +20,14 @@ export default function Timeline() {
         content: ''
     });
 
-    // Load posts on component mount
-    useEffect(() => {
-        loadPosts();
-    }, []);
-
-    // Mock API call to load posts - replace with actual API endpoint
-    const loadPosts = async () => {
-        try {
-            setLoading(true);
-            // Replace this with actual API call: const response = await fetch('/api/timeline_post');
-            // const data = await response.json();
-
-            // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 500));
-            setPosts(mockPosts);
-            setLoading(false);
-        } catch (error) {
-            console.error('Error loading posts:', error);
-            showMessage('Error loading posts. Please refresh the page.', 'error');
-            setLoading(false);
-        }
+    // Show message with auto-clear
+    const showMessage = (text: string, type: 'success' | 'error') => {
+        setMessage({ text, type });
+        setTimeout(() => setMessage({ text: '', type: '' }), 5000);
     };
 
     // Handle form submission
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (!formData.name.trim() || !formData.email.trim() || !formData.content.trim()) {
@@ -72,51 +36,25 @@ export default function Timeline() {
         }
 
         try {
-            setSubmitting(true);
-
-            // Replace with actual API call
-            // const response = await fetch('/api/timeline_post', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(formData)
-            // });
-
-            // Mock successful submission
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            const newPost = {
-                id: Date.now(),
-                ...formData,
-                created_at: new Date().toISOString()
-            };
-
-            setPosts([newPost, ...posts]);
+            await createPost(formData);
             setFormData({ name: '', email: '', content: '' });
             showMessage('Post created successfully!', 'success');
-            setSubmitting(false);
         } catch (error) {
-            console.error('Error creating post:', error);
+            // Error is already handled in the hook, just show a user-friendly message
             showMessage('Error creating post. Please try again.', 'error');
-            setSubmitting(false);
         }
     };
 
     // Handle input changes
-    const handleInputChange = (field, value) => {
+    const handleInputChange = (field: string, value: string) => {
         setFormData(prev => ({
             ...prev,
             [field]: value
         }));
     };
 
-    // Show message with auto-clear
-    const showMessage = (text, type) => {
-        setMessage({ text, type });
-        setTimeout(() => setMessage({ text: '', type: '' }), 5000);
-    };
-
     // Format date helper
-    const formatDate = (dateString) => {
+    const formatDate = (dateString: string) => {
         const date = new Date(dateString);
         return date.toLocaleDateString() + ' at ' + date.toLocaleTimeString([], {
             hour: '2-digit',
@@ -220,6 +158,23 @@ export default function Timeline() {
                                         </div>
                                     </CardBody>
                                 </Card>
+                            ) : error ? (
+                                <Card>
+                                    <CardBody className="text-center py-12">
+                                        <div className="flex flex-col items-center gap-3">
+                                            <p className="text-danger text-lg font-medium">
+                                                {error}
+                                            </p>
+                                            <Button 
+                                                color="primary" 
+                                                variant="flat" 
+                                                onClick={() => window.location.reload()}
+                                            >
+                                                Try Again
+                                            </Button>
+                                        </div>
+                                    </CardBody>
+                                </Card>
                             ) : posts.length === 0 ? (
                                 <Card>
                                     <CardBody className="text-center py-12">
@@ -230,7 +185,7 @@ export default function Timeline() {
                                 </Card>
                             ) : (
                                 <div className="space-y-4">
-                                    {posts.map((post, index) => (
+                                    {posts.map((post) => (
                                         <Card
                                             key={post.id}
                                             className="border-l-4 border-l-primary/50 hover:border-l-primary transition-colors duration-200"
