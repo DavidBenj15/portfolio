@@ -5,9 +5,11 @@ from dotenv import load_dotenv
 from . import testdata
 from peewee import *
 from playhouse.shortcuts import model_to_dict
+from flask_cors import CORS
 
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
 
 if os.getenv("TESTING") == "true":
     print("Running in test mode")
