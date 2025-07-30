@@ -3,6 +3,7 @@ import Container from "./ui/container";
 import { Card, CardHeader, CardBody, CardFooter } from "@heroui/card";
 import { Divider } from "@heroui/divider";
 import { Chip } from "@heroui/chip";
+import { Image } from "@heroui/image";
 
 const courses = [
     {
@@ -24,11 +25,13 @@ const About = () => {
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <div>
                         <Card className="bg-card border border-border">
-                            <CardBody>
-                                <div className="h-[400px] bg-muted flex items-center justify-center">
-                                    <span className="text-muted-foreground">About Image</span>
-                                </div>
-                            </CardBody>
+                                <Image
+                                    src="/images/me_square.jpg"
+                                    alt="David Benjamin"
+                                    width={600}
+                                    height={500}
+                                    className="object-cover"
+                                />
                         </Card>
                     </div>
                     <div className="">
@@ -36,14 +39,9 @@ const About = () => {
                             About Me
                         </h2>
                         <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                            I'm a passionate developer with expertise in modern web technologies.
-                            I love building applications that solve real problems and provide
-                            exceptional user experiences.
-                        </p>
-                        <p className="text-lg text-muted-foreground leading-relaxed">
-                            When I'm not coding, you can find me exploring new technologies,
-                            contributing to open source projects, or sharing knowledge with
-                            the developer community.
+                            I'm a computer science student at Johns Hopkins University, graduating in May 2027.
+                            I love building applications that solve real-world problems. I'm currently
+                            interested in Backend SWE, DevOps, and AI, but am always looking to grow my skillset.
                         </p>
                     </div>
                 </div>
