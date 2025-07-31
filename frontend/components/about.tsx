@@ -20,7 +20,7 @@ const courses = [
 
 const About = () => {
     return (
-        < Section id = "about" className = "bg-muted/50" >
+        < Section id = "about" className = "bg-background/90 border-t border-b border-border" >
             <Container>
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <div>
@@ -41,7 +41,7 @@ const About = () => {
                         <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                             I'm a computer science student at Johns Hopkins University, graduating in May 2027.
                             I love building applications that solve real-world problems. I'm currently
-                            interested in Backend SWE, DevOps, and AI, but am always looking to grow my skillset.
+                            interested in Full Stack SWE, DevOps, and AI, but am always looking to grow my skillset.
                         </p>
                     </div>
                 </div>

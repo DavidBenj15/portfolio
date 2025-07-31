@@ -131,7 +131,7 @@ const categories = [
 
 const Skills = () => {
     return (
-        <Section id="about" className="bg-background" >
+        <Section id="about" className="" >
             <Container>
                 <div className="space-y-8">
                     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">

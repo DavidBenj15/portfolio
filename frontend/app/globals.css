@@ -12,7 +12,7 @@
   --color-foreground: #ffffff;
   --color-primary: #68ace5;
   --color-secondary: #5c5c5c;
-  --color-accent: #68ace5;
+  --color-accent: #E667D6;
   --color-muted: #2a2a2a;
   --color-muted-foreground: #5c5c5c;
   --color-border: #3a3a3a;
@@ -49,13 +49,13 @@
     --foreground: #ffffff;
     --primary: #68ace5;
     --secondary: #5c5c5c;
-    --accent: #68ace5;
+    --accent: #E667D6;
     --muted: #2a2a2a;
     --muted-foreground: #5c5c5c;
     --border: #3a3a3a;
     --ring: #68ace5;
     --input: #2a2a2a;
-    --card: #2a2a2a;
+    --card: #251e1e;
     --card-foreground: #ffffff;
     --popover: #2a2a2a;
     --popover-foreground: #ffffff;

@@ -16,6 +16,8 @@ import {
     ModalFooter,
 } from "@heroui/modal";
 import { useState } from "react";
+import GridOverlay from "@/components/ui/grid-overlay";
+import { DotsOverlay } from "@/components/ui/dots-overlay";
 
 const experiences = [
     {
@@ -64,86 +66,105 @@ const experiences = [
 
 export default function Experience() {
     return (
-        <main className="relative">
-            <Navigation />
-            <Section id="experience" className="bg-background py-16 sm:py-20 lg:py-24 h-full">
-                <Container className="max-w-5xl">
-                    <div className="space-y-16">
-                        {/* Header Section */}
-                        <div className="space-y-6">
-                            <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-foreground">
-                                Experience
-                            </h1>
-                        </div>
+            <main className="relative min-h-screen bg-background overflow-hidden">
+      {/* Grid overlay that spans the entire page */}
+      {/* <GridOverlay /> */}
+      <DotsOverlay />
+      
+      {/* Subtle gradient overlay for depth */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(circle at 20% 50%, rgba(104, 172, 229, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(104, 172, 229, 0.08) 0%, transparent 50%)
+          `
+        }}
+      />
+      
+      {/* Your existing content with proper z-index */}
+      <div className="relative z-10">
+        <Navigation />
+        <Section id="experience" className="bg-background/50 py-16 sm:py-20 lg:py-24 h-full">
+            <Container className="max-w-5xl">
+                <div className="space-y-16">
+                    {/* Header Section */}
+                    <div className="space-y-6">
+                        <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-foreground">
+                            Experience
+                        </h1>
+                    </div>
 
-                        {/* Timeline Section */}
-                        <div className="relative">
-                            {/* Timeline line */}
-                            <div className="absolute left-1/2 md:left-80 top-0 bottom-0 w-0.5 bg-primary/30 transform -translate-x-0.5"></div>
+                    {/* Timeline Section */}
+                    <div className="relative">
+                        {/* Timeline line */}
+                        <div className="absolute left-1/2 md:left-80 top-0 bottom-0 w-0.5 bg-secondary/30 transform -translate-x-0.5"></div>
 
-                            <div className="space-y-12">
-                                {experiences.map((experience, index) => (
-                                    <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center">
-                                        {/* Date - Left side on desktop, top on mobile */}
-                                        <div className="w-full md:w-80 mb-4 md:mb-0 md:pr-8 flex justify-center md:justify-end">
-                                            <div className="text-right">
-                                                <p className="text-lg font-bold text-primary">
-                                                    {experience.date}
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        {/* Timeline dot */}
-                                        <div className="absolute left-1/2 md:left-80 top-6 md:top-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10 transform -translate-x-1/2"></div>
-
-                                        {/* Content - Right side */}
-                                        <div className="w-full md:flex-1 md:pl-8">
-                                            <Card
-                                                className={`w-full cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-l-primary`}
-                                            >
-                                                <CardHeader className="pb-3">
-                                                    <div className="flex flex-col space-y-2 w-full">
-                                                        <div className="flex justify-between items-start flex-wrap gap-2">
-                                                            <h2 className="text-xl sm:text-2xl font-bold text-foreground text-left">
-                                                                {experience.name}
-                                                            </h2>
-                                                        </div>
-                                                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
-                                                            <h3 className="text-lg font-semibold text-primary">
-                                                                {experience.title}
-                                                            </h3>
-                                                            <p className="text-sm text-muted-foreground font-medium">
-                                                                {experience.location}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </CardHeader>
-                                                {/* <Divider className="my-4" /> */}
-                                                <CardFooter className="pt-0 pb-4">
-                                                    <Accordion isCompact>
-                                                        <AccordionItem key={index} className="text-muted-foreground leading-relaxed">
-                                                            <div className="space-y-3">
-                                                                {experience.bullets.map((bullet, bulletIndex) => (
-                                                                    <div key={bulletIndex} className="flex items-start space-x-3">
-                                                                        <div className="w-2 h-2 rounded-full bg-primary/60 mt-2 flex-shrink-0"></div>
-                                                                        <p className="text-base text-muted-foreground leading-relaxed">
-                                                                            {bullet}
-                                                                        </p>
-                                                                    </div>
-                                                                ))}
-                                                            </div>
-                                                        </AccordionItem>
-                                                    </Accordion>
-                                                </CardFooter>
-                                            </Card>
+                        <div className="space-y-12">
+                            {experiences.map((experience, index) => (
+                                <div key={index} className="relative flex flex-col md:flex-row items-start md:items-center">
+                                    {/* Date - Left side on desktop, top on mobile */}
+                                    <div className="w-full md:w-80 mb-4 md:mb-0 md:pr-8 flex justify-center md:justify-end">
+                                        <div className="text-right">
+                                            <p className="text-lg font-bold text-primary">
+                                                {experience.date}
+                                            </p>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
+
+                                    {/* Timeline dot */}
+                                    <div className="absolute left-1/2 md:left-80 top-6 md:top-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg z-10 transform -translate-x-1/2"></div>
+
+                                    {/* Content - Right side */}
+                                    <div className="w-full md:flex-1 md:pl-8">
+                                        <Card
+                                            className={`w-full cursor-pointer transition-all duration-300 hover:shadow-lg hover:border-l-primary`}
+                                        >
+                                            <CardHeader className="pb-3">
+                                                <div className="flex flex-col space-y-2 w-full">
+                                                    <div className="flex justify-between items-start flex-wrap gap-2">
+                                                        <h2 className="text-xl sm:text-2xl font-bold text-foreground text-left">
+                                                            {experience.name}
+                                                        </h2>
+                                                    </div>
+                                                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+                                                        <h3 className="text-lg font-semibold text-primary">
+                                                            {experience.title}
+                                                        </h3>
+                                                        <p className="text-sm text-muted-foreground font-medium">
+                                                            {experience.location}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </CardHeader>
+                                            {/* <Divider className="my-4" /> */}
+                                            <CardFooter className="pt-0 pb-4">
+                                                <Accordion isCompact>
+                                                    <AccordionItem key={index} className="text-muted-foreground leading-relaxed">
+                                                        <div className="space-y-3">
+                                                            {experience.bullets.map((bullet, bulletIndex) => (
+                                                                <div key={bulletIndex} className="flex items-start space-x-3">
+                                                                    <div className="w-2 h-2 rounded-full bg-primary/60 mt-2 flex-shrink-0"></div>
+                                                                    <p className="text-base text-muted-foreground leading-relaxed">
+                                                                        {bullet}
+                                                                    </p>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </AccordionItem>
+                                                </Accordion>
+                                            </CardFooter>
+                                        </Card>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                </Container>
-            </Section>
-        </main>
+                </div>
+            </Container>
+        </Section>
+      </div>
+    </main>
     );
 }

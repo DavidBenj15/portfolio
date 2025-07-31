@@ -23,7 +23,7 @@ const Hero = () => {
     const defaultHeight = 50; // Set your default height here
 
     return (
-        <Section id="hero" className="flex flex-col items-center justify-center bg-background h-full min-h-screen">
+        <Section id="hero" className="flex flex-col items-center justify-center h-full min-h-screen bg-background/50">
             <div className="grid md:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-8 h-full">
                 {/* Left column - Name and description */}
                 <div className="space-y-6 h-full flex flex-col justify-between">

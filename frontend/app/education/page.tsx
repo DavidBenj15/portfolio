@@ -18,6 +18,8 @@ import {
 import { useDisclosure } from "@heroui/use-disclosure";
 import { Button } from "@heroui/button";
 import { useState } from "react";
+import GridOverlay from "@/components/ui/grid-overlay";
+import { DotsOverlay } from "@/components/ui/dots-overlay";
 
 const programmingLanguages = [
     {
@@ -222,106 +224,126 @@ export default function Education() {
     const [selectedCourse, setSelectedCourse] = useState<{
         name: string;
         description: string;
+        code: string;
     } | null>(null);
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-    const handleChipClick = (course: { name: string; description: string }) => {
+    const handleChipClick = (course: { name: string; description: string; code: string }) => {
         setSelectedCourse(course);
         onOpen();
     };
 
     return (
-        <main className="relative">
-            <Navigation />
-            <Section id="about" className="bg-background sm:py-20 lg:py-24 h-full" >
-                <Container className="max-w-5xl">
-                    <div className="space-y-12">
-                        {/* Header Section */}
-                        <div className="space-y-6">
-                            <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-foreground">
-                                Education
-                            </h1>
+            <main className="relative min-h-screen bg-background overflow-hidden">
+      {/* Grid overlay that spans the entire page */}
+      {/* <GridOverlay /> */}
+      <DotsOverlay />
+      
+      {/* Subtle gradient overlay for depth */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(circle at 20% 50%, rgba(104, 172, 229, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(104, 172, 229, 0.08) 0%, transparent 50%)
+          `
+        }}
+      />
+      
+      {/* Your existing content with proper z-index */}
+      <div className="relative z-10">
+                <Navigation />
+                <Section id="about" className="bg-background/50 sm:py-20 lg:py-24 h-full" >
+                    <Container className="max-w-5xl">
+                        <div className="space-y-12">
+                            {/* Header Section */}
+                            <div className="space-y-6">
+                                <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-foreground">
+                                    Education
+                                </h1>
 
-                            {/* University Info */}
-                            <div className="space-y-3">
-                                <h2 className="text-2xl sm:text-3xl font-semibold text-primary">
-                                    Johns Hopkins University
-                                </h2>
-                                <div className="space-y-1">
-                                    <p className="text-base sm:text-lg text-foreground font-medium">
-                                        B.S. Computer Science | Minor in Entrepreneurship and Management
-                                    </p>
-                                    <div className="flex flex-col sm:flex-row sm:gap-6 gap-1 text-sm text-muted-foreground">
-                                        <p>Expected Graduation: May 2027</p>
-                                        <p>GPA: 3.92</p>
+                                {/* University Info */}
+                                <div className="space-y-3">
+                                    <h2 className="text-2xl sm:text-3xl font-semibold text-primary">
+                                        Johns Hopkins University
+                                    </h2>
+                                    <div className="space-y-1">
+                                        <p className="text-base sm:text-lg text-foreground font-medium">
+                                            B.S. Computer Science | Minor in Entrepreneurship and Management
+                                        </p>
+                                        <div className="flex flex-col sm:flex-row sm:gap-6 gap-1 text-sm text-muted-foreground">
+                                            <p>Expected Graduation: May 2027</p>
+                                            <p>GPA: 3.92</p>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <Divider className="my-8" />
+
+                            {/* Coursework Section */}
+                            <div className="space-y-8">
+                                <h2 className="text-xl sm:text-2xl font-semibold text-primary">
+                                    Relevant Coursework
+                                </h2>
+
+                                <div className="space-y-10">
+                                    {courseCategories.map((category) => (
+                                        <div key={category.name} className="space-y-4">
+                                            <h3 className="text-lg sm:text-xl font-semibold text-foreground border-l-4 border-primary pl-4">
+                                                {category.name}
+                                            </h3>
+                                            <div className="flex flex-wrap gap-2.5 pl-4">
+                                                {category.courses.map((course) => (
+                                                    <Chip
+                                                        key={course.name}
+                                                        className="cursor-pointer bg-muted text-foreground hover:bg-accent transition-all duration-200 hover:scale-105"
+                                                        variant="solid"
+                                                        size="md"
+                                                        onClick={() => handleChipClick(course)}
+                                                    >
+                                                        {course.name}
+                                                    </Chip>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
 
-                        <Divider className="my-8" />
-
-                        {/* Coursework Section */}
-                        <div className="space-y-8">
-                            <h2 className="text-xl sm:text-2xl font-semibold text-primary">
-                                Relevant Coursework
-                            </h2>
-
-                            <div className="space-y-10">
-                                {courseCategories.map((category) => (
-                                    <div key={category.name} className="space-y-4">
-                                        <h3 className="text-lg sm:text-xl font-semibold text-foreground border-l-4 border-primary pl-4">
-                                            {category.name}
-                                        </h3>
-                                        <div className="flex flex-wrap gap-2.5 pl-4">
-                                            {category.courses.map((course) => (
-                                                <Chip
-                                                    key={course.name}
-                                                    className="cursor-pointer bg-muted text-foreground hover:bg-accent transition-all duration-200 hover:scale-105"
-                                                    variant="solid"
-                                                    size="md"
-                                                    onClick={() => handleChipClick(course)}
-                                                >
-                                                    {course.name}
-                                                </Chip>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
-                        <ModalContent>
-                            {(onClose) => (
-                                <>
-                                    <ModalHeader className="flex flex-col gap-1 pb-4">
-                                        <h3 className="text-xl font-semibold">{selectedCourse?.name}</h3>
-                                        <p className="text-base text-muted-foreground leading-relaxed">
-                                            {selectedCourse?.code}
-                                        </p>
-                                    </ModalHeader>
-                                    <ModalBody className="py-6">
-                                        <p className="text-base text-muted-foreground leading-relaxed">
-                                            {selectedCourse?.description}
-                                        </p>
-                                    </ModalBody>
-                                    <ModalFooter className="pt-4">
-                                        <Button
-                                            color="primary"
-                                            variant="light"
-                                            onPress={onClose}
-                                        >
-                                            Close
-                                        </Button>
-                                    </ModalFooter>
-                                </>
-                            )}
-                        </ModalContent>
-                    </Modal>
-                </Container>
-            </Section >
-        </main>
+                        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
+                            <ModalContent>
+                                {(onClose) => (
+                                    <>
+                                        <ModalHeader className="flex flex-col gap-1 pb-4">
+                                            <h3 className="text-xl font-semibold">{selectedCourse?.name}</h3>
+                                            <p className="text-base text-muted-foreground leading-relaxed">
+                                                {selectedCourse?.code}
+                                            </p>
+                                        </ModalHeader>
+                                        <ModalBody className="py-6">
+                                            <p className="text-base text-muted-foreground leading-relaxed">
+                                                {selectedCourse?.description}
+                                            </p>
+                                        </ModalBody>
+                                        <ModalFooter className="pt-4">
+                                            <Button
+                                                color="primary"
+                                                variant="light"
+                                                onPress={onClose}
+                                            >
+                                                Close
+                                            </Button>
+                                        </ModalFooter>
+                                    </>
+                                )}
+                            </ModalContent>
+                        </Modal>
+                    </Container>
+                </Section >
+      </div>
+    </main>
     );
 }
