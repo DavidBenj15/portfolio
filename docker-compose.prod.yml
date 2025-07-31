@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     environment:
-      - FLASK_ENV=development
+      - FLASK_ENV=production
       - FLASK_APP=__init__.py
     ports:
       - "5000:5000"
@@ -22,14 +22,11 @@ services:
 
   frontend:
     container_name: myportfolio-frontend
-    image: node:18
-    working_dir: /frontend
-    command: sh -c "npm install && npm run build"
-    volumes:
-      - ./frontend:/frontend
-      - /frontend/node_modules  # prevent host <-> container conflicts
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:80"
     # environment:
     #   - CHOKIDAR_USEPOLLING=true  # useful for hot reloading in Docker
   
