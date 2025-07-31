@@ -2,7 +2,7 @@
 FROM node:18 AS builder
 WORKDIR /app
 COPY . .
-RUN npm install && npm run build
+RUN npm install && npm run build && npm run export
 
 # Stage 2: Serve with Nginx
 FROM nginx:alpine
