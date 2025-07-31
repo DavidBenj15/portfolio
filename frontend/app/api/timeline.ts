@@ -1,7 +1,7 @@
 import { TimelineResponse, CreatePostResponse, CreatePostData } from '../types/timeline';
 
 // lib/api/timeline.js
-const baseUrl = process.env.URL || 'http://localhost:5000';
+const baseUrl = process.env.URL;
 
 /**
  * Get all timeline posts from the API
