@@ -1,6 +1,5 @@
 import Section from '@/components/ui/section';
 import Container from '@/components/ui/container';
-import Navigation from '@/components/ui/navigation';
 import SectionWithGrid from '@/components/ui/section-with-grid';
 import Hero from '@/components/hero';
 import About from '@/components/about';
@@ -9,7 +8,6 @@ import Skills from '@/components/skills';
 export default function HomeWithSectionGrids() {
   return (
     <main className="relative min-h-screen bg-background">
-      <Navigation />
       
       <SectionWithGrid gridIntensity={0.08} gridSize={50}>
         <Hero />

@@ -7,7 +7,6 @@ import { Divider } from "@heroui/divider";
 import { Chip } from "@heroui/chip";
 import { Input, Textarea } from "@heroui/input";
 import { Button } from "@heroui/button";
-import Navigation from "@/components/ui/navigation";
 import { useState, useEffect } from "react";
 import { useTimeline } from "../hooks/useTimeline";
 import GridOverlay from "@/components/ui/grid-overlay";
@@ -83,7 +82,6 @@ export default function Timeline() {
       
       {/* Your existing content with proper z-index */}
       <div className="relative z-10">
-                <Navigation />
                 <Section id="timeline" className="bg-background/50 py-16 sm:py-20 lg:py-24 h-full">
                     <Container className="max-w-4xl">
                         <div className="space-y-12">

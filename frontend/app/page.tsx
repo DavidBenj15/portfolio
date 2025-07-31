@@ -1,6 +1,5 @@
 import Section from '@/components/ui/section';
 import Container from '@/components/ui/container';
-import Navigation from '@/components/ui/navigation';
 import GridOverlay from '@/components/ui/grid-overlay';
 import Hero from '@/components/hero';
 import About from '@/components/about';
@@ -29,7 +28,6 @@ export default function Home() {
       
       {/* Your existing content with proper z-index */}
       <div className="relative z-10">
-        <Navigation />
         <Hero />
         <About />
         <Skills />

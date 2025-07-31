@@ -1,6 +1,6 @@
 "use client";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@heroui/navbar";
-import { Link } from "@heroui/link";
+import Link from "next/link";
 
 const navItems = [
   {

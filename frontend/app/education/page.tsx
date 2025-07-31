@@ -7,7 +7,6 @@ import { Divider } from "@heroui/divider";
 import { Chip } from "@heroui/chip";
 import { Accordion, AccordionItem } from "@heroui/accordion";
 import { Tooltip } from "@heroui/tooltip";
-import Navigation from "@/components/ui/navigation";
 import {
     Modal,
     ModalContent,
@@ -253,7 +252,6 @@ export default function Education() {
       
       {/* Your existing content with proper z-index */}
       <div className="relative z-10">
-                <Navigation />
                 <Section id="about" className="bg-background/50 sm:py-20 lg:py-24 h-full" >
                     <Container className="max-w-5xl">
                         <div className="space-y-12">

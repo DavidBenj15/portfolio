@@ -81,6 +81,16 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Smooth page transitions */
+  main {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  /* Ensure navigation stays smooth */
+  nav {
+    transition: all 0.2s ease-in-out;
+  }
+
   /* Custom scrollbar styling */
   ::-webkit-scrollbar {
     width: 8px;
