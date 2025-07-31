@@ -9,9 +9,10 @@ const baseUrl = process.env.NEXT_PUBLIC_API_URL;
  * @throws {Error} If the API request fails
  */
 export async function getTimelinePosts(): Promise<TimelineResponse> {
-    if (!baseUrl) {
-        throw new Error('API base URL not configured. Please set URL in your .env file.');
-    }
+    // Should be fine w/o a baseUrl in prod due to reverse proxy
+    // if (!baseUrl) {
+    //     throw new Error('API base URL not configured. Please set URL in your .env file.');
+    // }
 
     try {
         const response = await fetch(`${baseUrl}/api/timeline_post`, {
@@ -46,9 +47,10 @@ export async function getTimelinePosts(): Promise<TimelineResponse> {
  * @throws {Error} If the API request fails
  */
 export async function createTimelinePost(postData: CreatePostData): Promise<CreatePostResponse> {
-    if (!baseUrl) {
-        throw new Error('API base URL not configured. Please set URL in your .env file.');
-    }
+    // Should be fine w/o a baseUrl in prod due to reverse proxy
+    // if (!baseUrl) {
+    //     throw new Error('API base URL not configured. Please set URL in your .env file.');
+    // }
 
     // Validate input
     if (!postData.name || !postData.email || !postData.content) {
