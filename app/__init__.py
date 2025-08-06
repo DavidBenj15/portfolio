@@ -110,3 +110,5 @@ def delete_timeline_post(post_id):
         })
     except TimelinePost.DoesNotExist:
         abort(404, description=f'Post with ID {post_id} not found')
+
+# @app.route('/api/')

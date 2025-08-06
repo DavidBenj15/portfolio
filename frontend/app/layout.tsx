@@ -3,6 +3,7 @@ import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { HeroUIProvider } from "@heroui/system";
 import Navigation from "@/components/ui/navigation";
+import Footer from "@/components/footer";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -22,11 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistMono.variable} antialiased`}
+        className={`${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <HeroUIProvider>
           <Navigation />
-          {children}
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
         </HeroUIProvider>
       </body>
     </html>
