@@ -1,9 +1,22 @@
 "use client"
 import { useState, useEffect, useRef } from 'react';
 
+interface MousePosition {
+  x: number;
+  y: number;
+}
+
+interface DotsOverlayProps {
+  mousePosition: MousePosition | null;
+  className?: string;
+  dotSize?: number;
+  spacing?: number;
+  opacity?: number;
+}
+
 // Simplified DotsOverlay component with magnetic effect
-const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40, opacity = 0.4 }) => {
-  const dotsRef = useRef(null);
+const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40, opacity = 0.4 }: DotsOverlayProps) => {
+  const dotsRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   // Update dimensions only on mount and resize
@@ -28,7 +41,7 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
     const dots = dotsRef.current.children;
 
     for (let i = 0; i < dots.length; i++) {
-      const dot = dots[i];
+      const dot = dots[i] as HTMLElement;
 
       if (!mousePosition) {
         // Reset dots when mouse leaves
@@ -55,7 +68,7 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
         const offsetY = (mousePosition.y - dotCenterY) * force * (maxOffset / distance);
 
         dot.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-        dot.style.opacity = Math.min(1, opacity + force * 0.6);
+        dot.style.opacity = Math.min(1, opacity + force * 0.6).toString();
         dot.style.boxShadow = `0 0 ${force * 8}px rgba(255, 255, 255, ${Math.min(1, opacity + force * 0.6) * Math.random()})`;
       } else {
         dot.style.transform = 'translate(0, 0)';
@@ -105,12 +118,17 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
   );
 };
 
+interface PageWrapperProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
 // Simplified PageWrapper component
-const PageWrapper = ({ children, className = "" }) => {
-  const [mousePosition, setMousePosition] = useState(null);
+const PageWrapper = ({ children, className = "" }: PageWrapperProps) => {
+  const [mousePosition, setMousePosition] = useState<MousePosition | null>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
