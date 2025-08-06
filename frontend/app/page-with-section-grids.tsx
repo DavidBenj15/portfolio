@@ -1,13 +1,12 @@
-import Section from '@/components/ui/section';
-import Container from '@/components/ui/container';
 import SectionWithGrid from '@/components/ui/section-with-grid';
 import Hero from '@/components/hero';
 import About from '@/components/about';
 import Skills from '@/components/skills';
+import PageWrapper from '@/components/ui/page-wrapper';
 
 export default function HomeWithSectionGrids() {
   return (
-    <main className="relative min-h-screen bg-background">
+    <PageWrapper>
       
       <SectionWithGrid gridIntensity={0.08} gridSize={50}>
         <Hero />
@@ -20,6 +19,6 @@ export default function HomeWithSectionGrids() {
       <SectionWithGrid gridIntensity={0.06} gridSize={40}>
         <Skills />
       </SectionWithGrid>
-    </main>
+    </PageWrapper>
   );
 } 
