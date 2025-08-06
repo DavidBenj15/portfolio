@@ -1,8 +1,12 @@
 # Stage 1: Build
 FROM node:18 AS builder
 WORKDIR /app
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install
+
 COPY . .
-RUN npm install && npm run build
+RUN npm run build
 
 # Stage 2: Serve with Nginx
 FROM nginx:alpine
