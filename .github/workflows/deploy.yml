@@ -42,7 +42,7 @@ jobs:
         run: ssh my-vps 'docker ps'
 
       - name: Send Discord success notification
-        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 \Deployment Successful"
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
 
       - name: Send Discord failure notification
         if: failure()
