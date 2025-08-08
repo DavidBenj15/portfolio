@@ -1,14 +1,20 @@
 name: Deploy
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Run Tests"]
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:
   deploy:
     name: "Deploy to VPS"
+    # Only run if the trigger is from workflow_run AND tests succeeded,
+    # OR it's manually triggered via workflow_dispatch
+    if: >
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') ||
+      (github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     steps:
       - name: Configure SSH
@@ -31,3 +37,14 @@ jobs:
 
       - name: Deploy site
         run: ssh my-vps '~/redeploy-site.sh'
+
+      - name: Print container status
+        run: ssh my-vps 'docker ps'
+
+      - name: Send Discord success notification
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 \Deployment Successful"
+
+      - name: Send Discord failure notification
+        if: failure()
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=❌ Deployment Failed"
+
