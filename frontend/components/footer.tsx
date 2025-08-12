@@ -20,7 +20,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="w-full py-8 mt-auto border-t border-border">
+    <footer id="footer" className="w-full py-8 mt-auto border-t border-border">
       <div className="container mx-auto px-4 flex flex-col items-center space-y-4">
         {/* 1. "Let's get in touch" text */}
         <div className="text-center">
