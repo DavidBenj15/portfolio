@@ -7,6 +7,10 @@ const navItems = [
     name: "Home",
     link: "/"
   },
+  // {
+  //   name: "Projects",
+  //   link: "/projects"
+  // },
   {
     name: "Experience",
     link: "/experience"
@@ -15,10 +19,7 @@ const navItems = [
     name: "Education",
     link: "/education"
   },
-  // {
-  //   name: "Projects",
-  //   link: "/projects"
-  // },
+
   {
     name: "Timeline",
     link: "/timeline"
