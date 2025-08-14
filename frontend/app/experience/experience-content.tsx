@@ -21,8 +21,9 @@ const experiences = [
         location: 'Remote',
         date: 'June 2025 - Present',
         bullets: [
-            'Selected for a competitive 12-week fellowship, gaining hands-on experience with SRE tools and practices under the direct mentorship of Meta Production Engineers.',
-            'Developed proficiency in Linux fundamentals, shell scripting, databases (MySQL), microservices, testing, Docker, CI/CD (GitHub Actions), system monitoring, computer networking, and troubleshooting production systems by deploying a portfolio website.'
+            'Selected for a competitive 12-week fellowship (acceptance rate <2.5%) under direct mentorship of Meta Production Engineers, applying real - world Software Engineering and Site Reliability Engineering(SRE) practices.',
+            'Built and deployed a production-grade portfolio website using Linux (DigitalOcean VPS), Nginx (reverse proxy, rate limiting), Docker, and MySQL; implemented CI/ CD pipelines with GitHub Actions and enforced reliability through TDD with unit, integration, and system tests.',
+            'Integrated Prometheus and Grafana for observability, enabling real-time monitoring, metrics, and alerts to accelerate incident detection and resolution.'
         ]
     },
     {
@@ -31,8 +32,9 @@ const experiences = [
         location: 'Greenbelt, MD',
         date: 'May 2025 - Present',
         bullets: [
-            'Collaborating with Goddard Space Flight Center scientists to enhance the system for space telescope proposal management',
-            'Built a constraint solver with Google OR-Tools, Redis, Django, and Celery to automate and optimize reviewer assignment, cutting assignment time by 99% while satisfying 15+ constraints on bias, workload, and compliance'
+            'Built a constraint-based reviewer assignment tool with Google OR-Tools (CP-SAT) and Django, cutting space telescope proposal scheduling from 7 days to under 1 hour while meeting 15+ constraints on bias, workload, and compliance.',
+            'Eliminated timeout failures by implementing asynchronous processing with Celery and Redis, enabling uninterrupted long - running constraint solver jobs and improving user reliability.',
+            'Developed a name disambiguation module leveraging RapidFuzz and nickname heuristics, significantly improving conflict detection accuracy to reduce bias during proposal - reviewer assignment.'
         ]
     },
     {
@@ -41,9 +43,8 @@ const experiences = [
         location: 'Baltimore, MD',
         date: 'December 2024 - Present',
         bullets: [
-            "Developing and maintaining the official website for JHU's premier hackathon, supporting 500+ hackers and sponsors through tools for team formation, judging, and event logistics.",
-            'Built core features—including homepage, team directory, and judge tools—using React, Flask, MongoDB, and Amazon S3.',
-            'Collaborate in weekly Agile sprints across 5 teams, aligning technical implementation with evolving user and event needs.'
+            'Automated deployment for HopHacks website by designing a GitHub Actions CI/CD pipeline, reducing manual EC2 deployment steps by 100 % and eliminating downtime via safe, zero - downtime rsync + build promotion strategy.',
+            'Built core full stack features to support 500+ hackers and judges using React, Flask, MongoDB, and Amazon S3.'
         ]
     },
     {
