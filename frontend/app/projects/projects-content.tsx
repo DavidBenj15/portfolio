@@ -14,14 +14,13 @@ import NextImage from "next/image";
 interface Project {
     id: string;
     title: string;
-    description: string;
     shortDescription: string;
     longDescription: string;
     coverImage: string;
-    screenshots: string[];
+    screenshots: { url: string; caption: string }[];
     video?: string;
     technologies: string[];
-    category: 'Full Stack' | 'AI/ML' | 'DevOps' | 'Data Science' | 'Mobile';
+    category: 'Full Stack' | 'AI/ML' | 'DevOps';
     githubUrl?: string;
     liveUrl?: string;
     demoUrl?: string;
@@ -37,7 +36,6 @@ const projects: Project[] = [
     {
         id: 'coldmap',
         title: 'ColdMap',
-        description: 'Palantir AIP dashboard for predicting and visualizing cold storage risk factors.',
         shortDescription: 'Palantir AIP dashboard for predicting and visualizing cold storage risk factors.',
         longDescription: `Cell therapy manufacturers face $35 billion in annual losses from temperature deviations in the cryogenic supply chain (cold chain), where even slight delays or heat exposure can render life-saving treatments unusable.
 
@@ -46,12 +44,12 @@ I built ColdMap using Palantir AIP and GPT-4o to help logistics teams predict, e
 Developed in ~2 weeks for Palantir’s “Semester at Palantir” program, ColdMap showcases my ability to identify a high-impact problem, quickly learn an unfamiliar tech stack, and deliver a data-driven MVP. Even as a prototype, it demonstrates how AI-powered workflows could transform cold chain logistics—reducing billion-dollar losses while safeguarding patient access to critical therapies.`,
         coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
         screenshots: [
-            'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
-            'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/filter.png',
-            'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/coldchat.png',
-            'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/pipeline.png'
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'ColdMap dashboard' },
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/filter.png', caption: 'Filter for riskiest shipments departing from Johns Hopkins in the next week' },
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/coldchat.png', caption: 'ColdChat: identify top risk factors and draft emails to stakeholders' },
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/pipeline.png', caption: 'A visualization of the AIP data transformation pipeline' }
         ],
-        technologies: ['scikit-learn', 'polars', 'GPT-4o', 'Palantir AIP'],
+        technologies: ['scikit-learn', 'polars', 'GPT-4o', 'Palantir AIP', 'Python'],
         category: 'AI/ML',
         githubUrl: 'https://github.com/DavidBenj15/coldmap',
         featured: true,
@@ -74,6 +72,29 @@ Developed in ~2 weeks for Palantir’s “Semester at Palantir” program, ColdM
         //     'Created comprehensive documentation and training materials'
         // ],
         demoUrl: 'https://youtu.be/k0s5DXZZuMM'
+    },
+    {
+        id: 'gec',
+        title: 'Alibaba Global E-Commerce Challenge (2nd place / 500+ global teams)',
+        shortDescription: "Built and pitched an augmented Reality (AR) 'view in your room' app to boost Alibaba's sales in developing countries.",
+        longDescription: `
+            • The problem: The Phillipines' e-commerce market is rapidly expanding, with a projected gross merchandise value of $24 billion by 2025. Amazon's AR implementation increased sales by ~9%, but competitors in the Philipiines' e-commerce market are yeto to tap into this advantage.
+            • The solution: Our team built LEAP (Lazada Enhanced AR Platform), an AR app that allows user to view and compare products in their room through their phone's camera. LEAP aims to integrate seamlessley with Lazada's (Alibaba's Filipino e-commerce platform) existing platform, allowing Filipino shoppers to be confident in their purchases.
+            • The process: Alibaba's 2024 E-Commerce Challenge was a multi-stage competition with over 500 global teams. Our team was given 2 weeks to write a proposal for our solution. After being shortlisted, we had 3 days to build a working prototype. After being shortlisted again as top-10 finalists, we were flown out to Alibaba's headquarters in Hangzhou, China to network with AI experts, C-suite executives, and engineers. We had 2 days to develop a presentation while exploring China for the first time, and ended up securing 2nd place!
+        `,
+        coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alibaba/demo.jpg',
+        screenshots: [
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alibaba/demo.jpg', caption: 'Live demo of LEAP @ Alibaba HQ in Hangzhou, China' },
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alibaba/second.jpg', caption: `Our team posing for a photo with Carlos Barrrera (Lazada CEO) and Kaifu Zhang (Head of AI Initiative @ Alibaba)` },
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alibaba/hq.jpg', caption: `GEC global finalists @ Alibaba HQ` },
+        ],
+        technologies: ['Augmented Reality (AR)', 'React', 'Tailwind CSS'],
+        category: 'Full Stack',
+        githubUrl: 'https://github.com/DavidBenj15/gec-ar',
+        featured: true,
+        duration: '2 months',
+        teamSize: '2',
+        // demoUrl: 'https://youtu.be/k0s5DXZZuMM'
     },
 //     {
 //         id: 'baseball-analytics-platform',
@@ -99,9 +120,9 @@ Developed in ~2 weeks for Palantir’s “Semester at Palantir” program, ColdM
 // • Successfully scaled to support multiple teams and leagues`,
 //         coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
 //         screenshots: [
-//             'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
-//             'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
-//             'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png'
+//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Dashboard Overview' },
+//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Analytics Interface' },
+//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Data Visualization' }
 //         ],
 //         technologies: ['Next.js', 'TypeScript', 'Express.js', 'AWS Lambda', 'PostgreSQL'],
 //         category: 'Data Science',
@@ -154,9 +175,9 @@ Developed in ~2 weeks for Palantir’s “Semester at Palantir” program, ColdM
 // • Accessibility score: 95/100`,
 //         coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
 //         screenshots: [
-//             'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
-//             'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
-//             'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png'
+//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Homepage Design' },
+//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Projects Section' },
+//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Responsive Layout' }
 //         ],
 //         technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'HeroUI', 'Framer Motion'],
 //         category: 'Full Stack',
@@ -384,7 +405,7 @@ export default function ProjectsContent() {
                                                     <div className="relative">
                                                         <div className="relative w-full h-96 bg-muted/20 rounded-xl overflow-hidden">
                                                             <NextImage
-                                                                src={selectedProject.screenshots[currentImageIndex]}
+                                                                src={selectedProject.screenshots[currentImageIndex].url}
                                                                 alt={`${selectedProject.title} screenshot ${currentImageIndex + 1}`}
                                                                 fill
                                                                 className="object-cover"
@@ -411,6 +432,13 @@ export default function ProjectsContent() {
                                                                     </Button>
                                                                 </>
                                                             )}
+                                                        </div>
+                                                        
+                                                        {/* Screenshot Caption */}
+                                                        <div className="text-center mt-3">
+                                                            <p className="text-sm text-muted-foreground font-medium">
+                                                                {selectedProject.screenshots[currentImageIndex].caption}
+                                                            </p>
                                                         </div>
                                                         
                                                         {/* Image Indicators */}
@@ -549,7 +577,7 @@ export default function ProjectsContent() {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 startContent={<Play className="w-4 h-4" />}
-                                                className="font-medium bg-accent"
+                                                className="font-medium bg-primary"
                                             >
                                                 Watch Demo
                                             </Button>

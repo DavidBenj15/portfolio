@@ -20,10 +20,10 @@ const navItems = [
     link: "/education"
   },
 
-  {
-    name: "Timeline",
-    link: "/timeline"
-  }
+  // {
+  //   name: "Timeline",
+  //   link: "/timeline"
+  // }
 ]
 
 const Navigation = () => {
