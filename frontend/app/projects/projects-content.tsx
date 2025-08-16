@@ -50,7 +50,7 @@ const projects: Project[] = [
         screenshots: [
             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'ColdMap dashboard' },
             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/filter.png', caption: 'Filter for riskiest shipments departing from Johns Hopkins in the next week' },
-            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/coldchat.png', caption: 'ColdChat: identify top risk factors and draft emails to stakeholders' },
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/coldchat.png', caption: 'ColdChat AI workflows' },
             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/pipeline.png', caption: 'A visualization of the AIP data transformation pipeline' }
         ],
         technologies: ['scikit-learn', 'polars', 'GPT-4o', 'Palantir AIP', 'Python'],
@@ -127,12 +127,12 @@ const projects: Project[] = [
         coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alpb/landing.png',
         screenshots: [
             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alpb/landing.png', caption: 'SLUGGER landing page' },
-            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alpb/architecture.png', caption: 'ETL pipeline architecture' },
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alpb/architecture.png', caption: 'AWS ETL pipeline architecture' },
             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alpb/design+day.png', caption: 'Presenting SLUGGER at Johns Hopkins Design Day'}
         ],
         technologies: ['AWS API Gateway', 'AWS Lambda', 'Pandas', 'PostgreSQL', 'Next.js', 'Docker'],
         category: 'Full Stack',
-        githubUrl: 'https://github.com/DavidBenj15/baseball-analytics',
+        githubUrl: 'https://github.com/DavidBenj15/alpb-website',
         featured: true,
         duration: '12 months',
         teamSize: '9',
@@ -353,12 +353,13 @@ export default function ProjectsContent() {
                                                 <div className="space-y-4">
                                                     {/* <h4 className="text-xl font-semibold text-foreground">Project Screenshots</h4> */}
                                                     <div className="relative">
-                                                        <div className="relative w-full h-96 bg-muted/20 rounded-xl overflow-hidden">
+                                                        <div className="relative w-full bg-muted/20 rounded-xl overflow-hidden p-4">
                                                             <NextImage
                                                                 src={selectedProject.screenshots[currentImageIndex].url}
                                                                 alt={`${selectedProject.title} screenshot ${currentImageIndex + 1}`}
-                                                                fill
-                                                                className="object-cover"
+                                                                width={800}
+                                                                height={600}
+                                                                className="w-full h-auto max-h-[32rem] object-contain"
                                                             />
                                                             
                                                             {/* Navigation Arrows */}
@@ -367,7 +368,7 @@ export default function ProjectsContent() {
                                                                     <Button
                                                                         isIconOnly
                                                                         variant="flat"
-                                                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background/90"
+                                                                        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background/90 z-10"
                                                                         onPress={prevImage}
                                                                     >
                                                                         <ArrowLeft className="w-5 h-5" />
@@ -375,7 +376,7 @@ export default function ProjectsContent() {
                                                                     <Button
                                                                         isIconOnly
                                                                         variant="flat"
-                                                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background/90"
+                                                                        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background/90 z-10"
                                                                         onPress={nextImage}
                                                                     >
                                                                         <ArrowRight className="w-5 h-5" />
