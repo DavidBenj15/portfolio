@@ -106,113 +106,53 @@ const projects: Project[] = [
         readMoreUrl: 'https://www.prnewswire.com/news-releases/alibaba-international-wraps-up-2024-global-e-commerce-challenge-highlighting-youth-innovation-302238056.html'
         // demoUrl: 'https://youtu.be/k0s5DXZZuMM'
     },
-//     {
-//         id: 'baseball-analytics-platform',
-//         title: 'Baseball Analytics Platform',
-//         description: 'League-wide analytics platform for the Atlantic League, introducing MLB-style data access and tool sharing. Built ETL pipeline processing 60,000+ Trackman data points per game. Deployed full-stack web app serving 100+ users with Next.js and Express.js.',
-//         shortDescription: 'League-wide baseball analytics platform with ETL pipeline',
-//         longDescription: `The Baseball Analytics Platform represents a comprehensive solution for the Atlantic League, bringing professional-grade analytics capabilities to minor league baseball. This project addresses the critical need for data-driven decision making in baseball operations.
+    {
+        id: 'baseball-analytics-platform',
+        title: 'SLUGGER',
+        shortDescription: 'MLB-style advanced analytics platform for the Atlantic League of Professional Baseball.',
+        longDescription: `
+    • Problem: In Spring 2024, the Atlantic League of Professional Baseball (ALPB) began installing Trackman radars, generating 60,000+ data points per game. This data was locked in messy CSVs, requiring league coordination and offering no standardized infrastructure for analysts, coaches, or players.
 
-// Key Features:
-// • Real-time ETL pipeline processing 60,000+ Trackman data points per game
-// • Advanced statistical analysis and visualization tools
-// • User management system supporting 100+ coaches, scouts, and analysts
-// • Mobile-responsive dashboard for on-field decision making
-// • Automated report generation and data export capabilities
+    • Solution: We built SLUGGER, the first centralized analytics platform for the ALPB. It enables discovery and use of analytical "widgets" powered by a Trackman-backed API and is expanding to integrate other data sources like PointStreak.
 
-// Technical Implementation:
-// The platform leverages Next.js for the frontend with TypeScript for type safety, while the backend uses Express.js with AWS Lambda for serverless processing. The ETL pipeline processes massive amounts of Trackman data in real-time, transforming raw sensor data into actionable insights. PostgreSQL serves as the primary database with Redis for caching and session management.
+    • API: SLUGGER’s core is a RESTful API, built with AWS Lambda and deployed via API Gateway. It offers 5 endpoints (Teams, Ballparks, Players, Games, Pitches) and an ETL pipeline that processes 60,000+ pitch events per game using batch processing and Pandas, delivering clean, structured data to analysts.
 
-// Impact and Results:
-// • Reduced data processing time from hours to minutes
-// • Increased user engagement by 300% within first 3 months
-// • Enabled data-driven decisions that improved team performance metrics
-// • Successfully scaled to support multiple teams and leagues`,
-//         coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
-//         screenshots: [
-//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Dashboard Overview' },
-//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Analytics Interface' },
-//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Data Visualization' }
-//         ],
-//         technologies: ['Next.js', 'TypeScript', 'Express.js', 'AWS Lambda', 'PostgreSQL'],
-//         category: 'Data Science',
-//         githubUrl: 'https://github.com/DavidBenj15/baseball-analytics',
-//         featured: true,
-//         duration: '8 months',
-//         teamSize: 'Lead Developer',
-//         achievements: [
-//             'Processed 60,000+ data points per game in real-time',
-//             'Served 100+ active users across multiple teams',
-//             'Reduced data processing time from hours to minutes',
-//             'Increased user engagement by 300% in first 3 months'
-//         ],
-//         challenges: [
-//             'Handling massive real-time data streams efficiently',
-//             'Ensuring data accuracy and consistency across sources',
-//             'Building intuitive UI for non-technical users'
-//         ],
-//         solutions: [
-//             'Implemented efficient ETL pipeline with AWS Lambda and Redis caching',
-//             'Built comprehensive data validation and error handling systems',
-//             'Created user-centered design with extensive user testing and feedback'
-//         ]
-//     },
-//     {
-//         id: 'portfolio-website',
-//         title: 'Portfolio Website',
-//         description: 'A modern, responsive portfolio website built with Next.js, TypeScript, and Tailwind CSS. Features a clean design, smooth animations, and optimal performance. Includes sections for showcasing projects, experience, and skills with a professional aesthetic.',
-//         shortDescription: 'Modern portfolio website built with Next.js and TypeScript',
-//         longDescription: `This portfolio website represents a culmination of modern web development best practices, showcasing both technical skills and design sensibility. Built with a focus on performance, accessibility, and user experience, it demonstrates proficiency in full-stack development and modern web technologies.
+    • Web App: A widget dashboard lets ALPB personnel access, filter, and favorite analytical tools built on the API. Teams can register, manage members, and launch widgets such as lineup optimization and pitch analysis.
 
-// Key Features:
-// • Responsive design that works seamlessly across all devices
-// • Smooth animations and transitions using Framer Motion
-// • Optimized performance with Next.js Image optimization
-// • Dark/light theme support with HeroUI components
-// • SEO optimized with proper meta tags and structured data
-// • Accessibility features including keyboard navigation and screen reader support
+    • My Role: As co-lead, I built critical functionality across the stack, engaged with stakeholders (players, coaches, and the ALPB president) to define requirements, and mentored students weekly on API usage and deployment.
 
-// Technical Implementation:
-// The website leverages Next.js 13+ with the App Router for optimal performance and developer experience. TypeScript ensures type safety throughout the codebase, while Tailwind CSS provides utility-first styling. HeroUI components deliver consistent, accessible UI elements, and Framer Motion adds smooth, performant animations.
+    • Impact: Launched for the 2025 season, SLUGGER is live at https://www.alpb-analytics.com/ (though you need to be a member of the ALPB to access it), serving 100+ users across 10 teams and 10+ developers. At launch, it shipped with 4 production-ready widgets, with more in development from our growing community.
+`,
 
-// Design Philosophy:
-// The design emphasizes readability and professionalism while maintaining visual appeal. The layout guides visitors through a logical flow of information, from introduction to detailed project showcases. The color scheme and typography choices reflect modern design trends while ensuring excellent contrast and readability.
-
-// Performance & SEO:
-// • Lighthouse score: 95+ across all metrics
-// • Core Web Vitals: All green
-// • SEO score: 100/100
-// • Accessibility score: 95/100`,
-//         coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
-//         screenshots: [
-//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Homepage Design' },
-//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Projects Section' },
-//             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'Responsive Layout' }
-//         ],
-//         technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'HeroUI', 'Framer Motion'],
-//         category: 'Full Stack',
-//         githubUrl: 'https://github.com/DavidBenj15/portfolio',
-//         liveUrl: 'https://davidbenjamin.dev',
-//         featured: true,
-//         duration: '3 months',
-//         teamSize: 'Solo',
-//         achievements: [
-//             'Achieved 95+ Lighthouse score across all metrics',
-//             'Perfect SEO score of 100/100',
-//             'All Core Web Vitals in green',
-//             'Accessibility score of 95/100'
-//         ],
-//         challenges: [
-//             'Balancing visual appeal with performance optimization',
-//             'Ensuring accessibility compliance across all components',
-//             'Creating smooth animations without impacting performance'
-//         ],
-//         solutions: [
-//             'Implemented lazy loading and code splitting for optimal performance',
-//             'Used semantic HTML and ARIA labels for accessibility',
-//             'Leveraged Framer Motion\'s optimized animation engine'
-//         ]
-//     },
+        coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alpb/landing.png',
+        screenshots: [
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alpb/landing.png', caption: 'SLUGGER landing page' },
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alpb/architecture.png', caption: 'ETL pipeline architecture' },
+            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alpb/design+day.png', caption: 'Presenting SLUGGER at Johns Hopkins Design Day'}
+        ],
+        technologies: ['AWS API Gateway', 'AWS Lambda', 'Pandas', 'PostgreSQL', 'Next.js', 'Docker'],
+        category: 'Full Stack',
+        githubUrl: 'https://github.com/DavidBenj15/baseball-analytics',
+        featured: true,
+        duration: '12 months',
+        teamSize: '9',
+        // achievements: [
+        //     'Processed 60,000+ data points per game in real-time',
+        //     'Served 100+ active users across multiple teams',
+        //     'Reduced data processing time from hours to minutes',
+        //     'Increased user engagement by 300% in first 3 months'
+        // ],
+        // challenges: [
+        //     'Handling massive real-time data streams efficiently',
+        //     'Ensuring data accuracy and consistency across sources',
+        //     'Building intuitive UI for non-technical users'
+        // ],
+        // solutions: [
+        //     'Implemented efficient ETL pipeline with AWS Lambda and Redis caching',
+        //     'Built comprehensive data validation and error handling systems',
+        //     'Created user-centered design with extensive user testing and feedback'
+        // ]
+    },
 
 ];
 
