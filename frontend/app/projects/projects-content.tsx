@@ -24,6 +24,7 @@ interface Project {
     githubUrl?: string;
     liveUrl?: string;
     demoUrl?: string;
+    readMoreUrl?: string;
     featured: boolean;
     duration?: string;
     teamSize?: string;
@@ -37,11 +38,14 @@ const projects: Project[] = [
         id: 'coldmap',
         title: 'ColdMap',
         shortDescription: 'Palantir AIP dashboard for predicting and visualizing cold storage risk factors.',
-        longDescription: `Cell therapy manufacturers face $35 billion in annual losses from temperature deviations in the cryogenic supply chain (cold chain), where even slight delays or heat exposure can render life-saving treatments unusable.
+        longDescription: `
+    • Problem: Cell therapy manufacturers lose ~$35B annually from temperature deviations in the cryogenic supply chain. Even brief delays or heat exposure can render life-saving treatments unusable.
+    
+    • Solution: I built ColdMap using Palantir AIP and GPT-4o to help logistics teams predict, explain, and mitigate shipment risks. Data flows through an AIP-hosted pipeline and logistic regression model to calculate excursion probabilities, visualized on an interactive map. Users can filter by risk level, timeframe, or location; query ColdChat (a GPT-4o chatbot with shipment context) for explanations of top risk factors; and trigger AI workflows to notify stakeholders.
+    
+    • Significance: Developed in ~2 weeks for Palantir’s “Semester at Palantir” program, ColdMap highlights my ability to learn new tools quickly and deliver a data-driven MVP. Even as a prototype, it shows how AI-powered workflows could reduce billion-dollar losses while safeguarding patient access to critical therapies.
+`,
 
-I built ColdMap using Palantir AIP and GPT-4o to help logistics teams predict, explain, and mitigate cold chain shipment risks. Shipment data flows through an AIP-hosted pipeline and logistic regression model to calculate excursion probabilities, visualized on an interactive map. Users can filter by risk level, timeframe, location, and a variety of other parameters; query ColdChat (GPT-4o chatbot with shipment context) for natural-language explanations of top risk factors; and trigger AI workflows to draft emails and notify stakeholders.
-
-Developed in ~2 weeks for Palantir’s “Semester at Palantir” program, ColdMap showcases my ability to identify a high-impact problem, quickly learn an unfamiliar tech stack, and deliver a data-driven MVP. Even as a prototype, it demonstrates how AI-powered workflows could transform cold chain logistics—reducing billion-dollar losses while safeguarding patient access to critical therapies.`,
         coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
         screenshots: [
             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'ColdMap dashboard' },
@@ -71,17 +75,22 @@ Developed in ~2 weeks for Palantir’s “Semester at Palantir” program, ColdM
         //     'Implemented model monitoring and A/B testing frameworks',
         //     'Created comprehensive documentation and training materials'
         // ],
-        demoUrl: 'https://youtu.be/k0s5DXZZuMM'
+        demoUrl: 'https://youtu.be/k0s5DXZZuMM',
+        readMoreUrl: 'https://github.com/DavidBenj15/coldmap'
     },
     {
         id: 'gec',
-        title: 'Alibaba Global E-Commerce Challenge (2nd place / 500+ global teams)',
-        shortDescription: "Built and pitched an augmented Reality (AR) 'view in your room' app to boost Alibaba's sales in developing countries.",
+        title: 'LEAP (2nd place / 500+ global teams @ 2024 Alibaba Global E-Commerce Challenge)',
+        shortDescription: "Built and pitched an augmented reality 'view in your room' app to boost Alibaba's sales in developing countries.",
         longDescription: `
-            • The problem: The Phillipines' e-commerce market is rapidly expanding, with a projected gross merchandise value of $24 billion by 2025. Amazon's AR implementation increased sales by ~9%, but competitors in the Philipiines' e-commerce market are yeto to tap into this advantage.
-            • The solution: Our team built LEAP (Lazada Enhanced AR Platform), an AR app that allows user to view and compare products in their room through their phone's camera. LEAP aims to integrate seamlessley with Lazada's (Alibaba's Filipino e-commerce platform) existing platform, allowing Filipino shoppers to be confident in their purchases.
-            • The process: Alibaba's 2024 E-Commerce Challenge was a multi-stage competition with over 500 global teams. Our team was given 2 weeks to write a proposal for our solution. After being shortlisted, we had 3 days to build a working prototype. After being shortlisted again as top-10 finalists, we were flown out to Alibaba's headquarters in Hangzhou, China to network with AI experts, C-suite executives, and engineers. We had 2 days to develop a presentation while exploring China for the first time, and ended up securing 2nd place!
-        `,
+    • Prompt: "Revolutionize e-commerce with AI."
+    
+    • Problem: The Philippines’ e-commerce market is projected to reach $24B by 2025. While Amazon’s AR boosted sales by ~9%, local competitors have yet to adopt similar solutions.
+    
+    • Solution: We built LEAP (Lazada Enhanced AR Platform), an AR app that lets shoppers view and compare products in their own space using their phone’s camera. LEAP is designed to integrate with Lazada (Alibaba’s Filipino e-commerce platform), helping customers make more confident purchases.
+    
+    • Process: Competing in Alibaba’s 2024 E-Commerce Challenge (500+ teams worldwide), we had 2 weeks to draft our proposal, 3 days to build a prototype after being shortlisted, and—after reaching the top 10—were flown out to Alibaba HQ in Hangzhou, China. There, we had 2 days to network with AI experts & C-suite executives, learn about Alibaba's AI initiatives, and develop a presentation. We ended up securing second place!
+`,
         coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alibaba/demo.jpg',
         screenshots: [
             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alibaba/demo.jpg', caption: 'Live demo of LEAP @ Alibaba HQ in Hangzhou, China' },
@@ -89,11 +98,12 @@ Developed in ~2 weeks for Palantir’s “Semester at Palantir” program, ColdM
             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alibaba/hq.jpg', caption: `GEC global finalists @ Alibaba HQ` },
         ],
         technologies: ['Augmented Reality (AR)', 'React', 'Tailwind CSS'],
-        category: 'Full Stack',
+        category: 'AI/ML',
         githubUrl: 'https://github.com/DavidBenj15/gec-ar',
         featured: true,
         duration: '2 months',
         teamSize: '2',
+        readMoreUrl: 'https://www.prnewswire.com/news-releases/alibaba-international-wraps-up-2024-global-e-commerce-challenge-highlighting-youth-innovation-302238056.html'
         // demoUrl: 'https://youtu.be/k0s5DXZZuMM'
     },
 //     {
@@ -554,6 +564,19 @@ export default function ProjectsContent() {
                                                 View Code
                                             </Button>
                                         )}
+                                        {selectedProject?.readMoreUrl && (
+                                            <Button
+                                                as="a"
+                                                href={selectedProject.readMoreUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                variant="bordered"
+                                                startContent={<ExternalLinkIcon className="w-4 h-4" />}
+                                                className="font-medium"
+                                            >
+                                                Read More
+                                            </Button>
+                                        )}
                                     </div>
                                     
                                     <div className="flex gap-2">
@@ -693,9 +716,7 @@ function ProjectCard({ project, onClick, getCategoryColor, onViewDetails }: Proj
                             className="flex-1"
                             startContent={<Github className="w-4 h-4" />}
                             onClick={(e) => e.stopPropagation()}
-                        >
-                            Code
-                        </Button>
+                        />
                     )}
                     {project.liveUrl && (
                         <Button
@@ -722,7 +743,7 @@ function ProjectCard({ project, onClick, getCategoryColor, onViewDetails }: Proj
                                 onViewDetails(project);
                             }}
                         >
-                            View Details
+                            More
                         </Button>
                     )}
                 </div>
