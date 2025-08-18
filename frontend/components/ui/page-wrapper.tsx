@@ -40,7 +40,7 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
   const [connections, setConnections] = useState<Connection[]>([]);
   const [stableConnections, setStableConnections] = useState<Connection[]>([]);
   const [connectedDots, setConnectedDots] = useState<Set<string>>(new Set());
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number>(0);
   const lastUpdateRef = useRef({ x: 0, y: 0, time: 0 });
   const lastConnectionUpdateRef = useRef<number>(0);
   const dotGlowMap = useRef<Map<string, number>>(new Map());
