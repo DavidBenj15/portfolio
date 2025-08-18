@@ -39,7 +39,7 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
   const [dotPositions, setDotPositions] = useState<DotPosition[]>([]);
   const [connections, setConnections] = useState<Connection[]>([]);
   const [stableConnections, setStableConnections] = useState<Connection[]>([]);
-  const frameRef = useRef<number>(null);
+  const frameRef = useRef<number>();
   const lastUpdateRef = useRef({ x: 0, y: 0, time: 0 });
   const lastConnectionUpdateRef = useRef<number>(0);
 
@@ -107,7 +107,7 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
         );
 
         if (distance <= maxDistance) {
-          const baseOpacity = (1 - (distance / maxDistance)) * 0.3;
+          const baseOpacity = (1 - (distance / maxDistance)) * 0.45; // Increased base brightness
           let connectionOpacity = baseOpacity;
 
           // Much more subtle mouse influence
@@ -119,7 +119,7 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
             );
             // Reduced influence radius and strength
             const mouseInfluence = Math.max(0, 1 - mouseDistance / 250);
-            connectionOpacity = Math.min(0.5, connectionOpacity + mouseInfluence * 0.15);
+            connectionOpacity = Math.min(0.8, connectionOpacity + mouseInfluence * 0.25); // Higher max brightness
           }
 
           const connectionId = `${dot1.id}-${dot2.id}`;
@@ -245,9 +245,8 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
         Math.pow(mousePosition.y - dotCenterY, 2)
       );
 
-      // For magnetic effect
       const maxDistance = 150;
-      const maxOffset = 5;
+      const maxOffset = 8;
 
       if (distance < maxDistance) {
         const force = (maxDistance - distance) / maxDistance;
@@ -255,7 +254,7 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
         const offsetY = (mousePosition.y - dotCenterY) * force * (maxOffset / distance);
 
         dot.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-        dot.style.opacity = Math.min(1, opacity + force * 0.9).toString();
+        dot.style.opacity = Math.min(1, opacity + force * 0.6).toString();
         dot.style.boxShadow = `0 0 ${force * 8}px rgba(255, 255, 255, ${Math.min(1, opacity + force * 0.6) * 0.3})`;
 
         position.currentX = position.x + offsetX;
