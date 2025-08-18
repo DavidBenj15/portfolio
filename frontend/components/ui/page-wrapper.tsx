@@ -39,9 +39,11 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
   const [dotPositions, setDotPositions] = useState<DotPosition[]>([]);
   const [connections, setConnections] = useState<Connection[]>([]);
   const [stableConnections, setStableConnections] = useState<Connection[]>([]);
+  const [connectedDots, setConnectedDots] = useState<Set<string>>(new Set());
   const frameRef = useRef<number>();
   const lastUpdateRef = useRef({ x: 0, y: 0, time: 0 });
   const lastConnectionUpdateRef = useRef<number>(0);
+  const dotGlowMap = useRef<Map<string, number>>(new Map());
 
   // Update dimensions only on mount and resize
   useEffect(() => {
@@ -86,8 +88,8 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
   // Function to find connections between dots with better distribution and less mouse influence
   const findConnections = (positions: DotPosition[], mousePos: MousePosition | null) => {
     const newConnections: Connection[] = [];
-    const maxDistance = 100; // Maximum connection distance
-    const maxConnections = 25; // Total connections limit
+    const maxDistance = 110; // Slightly increased to better capture diagonals
+    const maxConnections = 30; // More connections to show more variety
     const connectionsPerDot = 3; // Max connections per dot
 
     const dotConnections = new Map<string, number>();
@@ -135,18 +137,31 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
       }
     }
 
-    // Sort potential connections with more emphasis on distance and less on mouse
+    // Sort potential connections with balanced weighting for different connection types
     potentialConnections.sort((a, b) => {
-      // Favor shorter distances (stronger weight)
-      const distanceScore = (a.distance - b.distance) * 2;
+      // Calculate connection angles to identify diagonal vs straight lines
+      const deltaX1 = Math.abs(a.dot1.currentX - a.dot2.currentX);
+      const deltaY1 = Math.abs(a.dot1.currentY - a.dot2.currentY);
+      const deltaX2 = Math.abs(b.dot1.currentX - b.dot2.currentX);
+      const deltaY2 = Math.abs(b.dot1.currentY - b.dot2.currentY);
+
+      const isDiagonal1 = deltaX1 > 10 && deltaY1 > 10; // Both X and Y change significantly
+      const isDiagonal2 = deltaX2 > 10 && deltaY2 > 10;
+
+      // Slight preference for diagonal connections to increase variety
+      const diagonalBonus1 = isDiagonal1 ? -15 : 0;
+      const diagonalBonus2 = isDiagonal2 ? -15 : 0;
+
+      // Favor shorter distances (but less strongly to allow more variety)
+      const distanceScore = (a.distance - b.distance) * 1.5;
 
       // Add randomness to prevent clustering
-      const randomFactor = (Math.random() - 0.5) * 40;
+      const randomFactor = (Math.random() - 0.5) * 50;
 
       // Very minimal preference for connections with higher opacity
-      const opacityScore = (b.targetOpacity - a.targetOpacity) * 20;
+      const opacityScore = (b.targetOpacity - a.targetOpacity) * 15;
 
-      return distanceScore + randomFactor + opacityScore;
+      return distanceScore + randomFactor + opacityScore + diagonalBonus1 - diagonalBonus2;
     });
 
     // Select connections while respecting limits and ensuring distribution
@@ -226,11 +241,24 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
     for (let i = 0; i < Math.min(dots.length, updatedPositions.length); i++) {
       const dot = dots[i] as HTMLElement;
       const position = updatedPositions[i];
+      const isConnected = connectedDots.has(position.id);
+      const glowIntensity = dotGlowMap.current.get(position.id) || 0;
 
       if (!mousePosition) {
         // Reset dots when mouse leaves
         dot.style.transform = 'translate(0, 0)';
-        dot.style.opacity = opacity.toString();
+
+        // Apply star glow effect for connected dots
+        if (isConnected) {
+          const starOpacity = Math.min(1, opacity + glowIntensity * 0.6);
+          const glowSize = glowIntensity * 12;
+          dot.style.opacity = starOpacity.toString();
+          dot.style.boxShadow = `0 0 ${glowSize}px rgba(255, 255, 255, ${glowIntensity * 0.8})`;
+        } else {
+          dot.style.opacity = opacity.toString();
+          dot.style.boxShadow = 'none';
+        }
+
         position.currentX = position.x;
         position.currentY = position.y;
         continue;
@@ -254,14 +282,37 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
         const offsetY = (mousePosition.y - dotCenterY) * force * (maxOffset / distance);
 
         dot.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-        dot.style.opacity = Math.min(1, opacity + force * 0.6).toString();
-        dot.style.boxShadow = `0 0 ${force * 8}px rgba(255, 255, 255, ${Math.min(1, opacity + force * 0.6) * 0.3})`;
+
+        // Combine mouse interaction with star glow effect
+        let finalOpacity = Math.min(1, opacity + force * 0.6);
+        let finalGlowSize = force * 8;
+        let finalGlowOpacity = Math.min(1, opacity + force * 0.6) * 0.3;
+
+        if (isConnected) {
+          finalOpacity = Math.max(finalOpacity, opacity + glowIntensity * 0.6);
+          finalGlowSize = Math.max(finalGlowSize, glowIntensity * 12);
+          finalGlowOpacity = Math.max(finalGlowOpacity, glowIntensity * 0.8);
+        }
+
+        dot.style.opacity = finalOpacity.toString();
+        dot.style.boxShadow = `0 0 ${finalGlowSize}px rgba(255, 255, 255, ${finalGlowOpacity})`;
 
         position.currentX = position.x + offsetX;
         position.currentY = position.y + offsetY;
       } else {
         dot.style.transform = 'translate(0, 0)';
-        dot.style.opacity = opacity.toString();
+
+        // Apply star glow effect for connected dots
+        if (isConnected) {
+          const starOpacity = Math.min(1, opacity + glowIntensity * 0.6);
+          const glowSize = glowIntensity * 12;
+          dot.style.opacity = starOpacity.toString();
+          dot.style.boxShadow = `0 0 ${glowSize}px rgba(255, 255, 255, ${glowIntensity * 0.8})`;
+        } else {
+          dot.style.opacity = opacity.toString();
+          dot.style.boxShadow = 'none';
+        }
+
         position.currentX = position.x;
         position.currentY = position.y;
       }
@@ -275,11 +326,37 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
     const now = Date.now();
 
     // Only update connections every 2 seconds for slower, more stable changes
-    if (now - lastConnectionUpdateRef.current < 2000) return;
+    if (now - lastConnectionUpdateRef.current < 3000) return;
 
     lastConnectionUpdateRef.current = now;
     const targetConnections = findConnections(dotPositions, mousePosition);
     setStableConnections(targetConnections);
+
+    // Update which dots are connected and assign random glow values
+    const newConnectedDots = new Set<string>();
+    targetConnections.forEach(connection => {
+      newConnectedDots.add(connection.dot1.id);
+      newConnectedDots.add(connection.dot2.id);
+
+      // Assign random glow values to newly connected dots
+      if (!dotGlowMap.current.has(connection.dot1.id)) {
+        dotGlowMap.current.set(connection.dot1.id, 0.3 + Math.random() * 0.7); // Random glow between 0.3-1.0
+      }
+      if (!dotGlowMap.current.has(connection.dot2.id)) {
+        dotGlowMap.current.set(connection.dot2.id, 0.3 + Math.random() * 0.7);
+      }
+    });
+
+    // Remove glow values for dots that are no longer connected
+    const dotsToRemove = [];
+    for (const [dotId] of dotGlowMap.current) {
+      if (!newConnectedDots.has(dotId)) {
+        dotsToRemove.push(dotId);
+      }
+    }
+    dotsToRemove.forEach(dotId => dotGlowMap.current.delete(dotId));
+
+    setConnectedDots(newConnectedDots);
   };
 
   // Animation loop with separated dot and connection updates
@@ -322,7 +399,7 @@ const DotsOverlay = ({ mousePosition, className = "", dotSize = 1, spacing = 40,
         cancelAnimationFrame(frameRef.current);
       }
     };
-  }, [mousePosition, dotPositions.length, opacity, stableConnections]);
+  }, [mousePosition, dotPositions.length, opacity, stableConnections, connectedDots]);
 
   // Generate dots pattern
   const dots = [];
