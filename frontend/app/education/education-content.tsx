@@ -1,10 +1,7 @@
 'use client'
 
-import { Card, CardHeader, CardBody, CardFooter } from "@heroui/card";
 import { Divider } from "@heroui/divider";
 import { Chip } from "@heroui/chip";
-import { Accordion, AccordionItem } from "@heroui/accordion";
-import { Tooltip } from "@heroui/tooltip";
 import {
     Modal,
     ModalContent,
@@ -15,96 +12,6 @@ import {
 import { useDisclosure } from "@heroui/use-disclosure";
 import { Button } from "@heroui/button";
 import { useState } from "react";
-
-const programmingLanguages = [
-    {
-        name: 'Python',
-    },
-    {
-        name: 'Java',
-    },
-    {
-        name: 'JavaScript',
-    },
-    {
-        name: 'TypeScript',
-    },
-    {
-        name: 'C++',
-    },
-    {
-        name: 'C',
-    },
-    {
-        name: 'SQL',
-    },
-    {
-        name: 'Bash'
-    },
-    {
-        name: 'HTML/CSS'
-    }
-]
-
-const technologies = [
-    {
-        name: 'Linux',
-    },
-    {
-        name: 'Git',
-    },
-    {
-        name: 'Docker',
-    },
-    {
-        name: 'GitHub',
-    },
-    {
-        name: 'Amazon Web Services (AWS)'
-    }
-]
-
-const frameworks = [
-    {
-        name: 'React',
-    },
-    {
-        name: 'Next.js',
-    },
-    {
-        name: 'Tailwind CSS',
-    },
-    {
-        name: 'Node.js',
-    },
-    {
-        name: 'Pandas',
-    },
-    {
-        name: 'Flask',
-    },
-    {
-        name: 'Django',
-    },
-    {
-        name: 'FastAPI',
-    }
-]
-
-const concepts = [
-    {
-        name: 'Object-Oriented Programming (OOP)',
-    },
-    {
-        name: 'Data Structures',
-    },
-    {
-        name: 'Algorithms',
-    },
-    {
-        name: 'Vector Databases',
-    }
-]
 
 const courseCategories = [
     {
@@ -149,6 +56,11 @@ const courseCategories = [
                 name: 'Introduction to Deep Learning for Medical Imaging',
                 description: 'This course provides a comprehensive overview of AI in medical imaging, covering classification, segmentation, and the use of different data types and modalities. It explores deep learning techniques with PyTorch, algorithms for medical segmentation, preprocessing and data augmentation, synthetic data generation, domain adaptation, bias and uncertainty handling, limited supervision learning, emerging architectures, and the applications of clinical AI in research and practice, including enhancing diagnosis, treatment, and patient outcomes.',
                 code: 'EN.500.111',
+            },
+            {
+                name: 'Studying the Brain with Neural Data Science',
+                description: 'This course equips students with the skills to analyze and interpret neural data using advanced computational techniques. Students will work with real-world neural data to extract scientific insights, while focusing on computational methods such as machine learning, dimensionality reduction, regression models, and dynamical systems',
+                code: 'EN.500.312'
             },
             {
                 name: 'Scientific Computing',
@@ -231,7 +143,7 @@ export default function EducationContent() {
         <div className="space-y-12">
             {/* Header Section */}
             <div className="space-y-6">
-                <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-foreground">
+                <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-foreground glow-white-soft">
                     Education
                 </h1>
 
@@ -256,9 +168,15 @@ export default function EducationContent() {
 
             {/* Coursework Section */}
             <div className="space-y-8">
-                <h2 className="text-xl sm:text-2xl font-semibold text-primary">
-                    Relevant Coursework
-                </h2>
+                <div className="space-y-3">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-primary">
+                        Relevant Coursework
+                    </h2>
+                    <p className="text-base text-muted-foreground leading-relaxed">
+                        Click on a course to see what I'm learning about!
+                    </p>
+                </div>
+
 
                 <div className="space-y-10">
                     {courseCategories.map((category) => (

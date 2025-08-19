@@ -1,18 +1,8 @@
 'use client'
 
 import { Card, CardHeader, CardBody, CardFooter } from "@heroui/card";
-import { Divider } from "@heroui/divider";
-import { Chip } from "@heroui/chip";
 import { Accordion, AccordionItem } from "@heroui/accordion";
-import { Tooltip } from "@heroui/tooltip";
-import {
-    Modal,
-    ModalContent,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
-} from "@heroui/modal";
-import { useState } from "react";
+
 
 const experiences = [
     {
@@ -65,7 +55,7 @@ export default function ExperienceContent() {
         <div className="space-y-16">
             {/* Header Section */}
             <div className="space-y-6">
-                <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-foreground">
+                <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-foreground glow-white-soft">
                     Experience
                 </h1>
             </div>

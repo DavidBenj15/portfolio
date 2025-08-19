@@ -200,7 +200,7 @@ export default function ProjectsContent() {
         <div className="space-y-16">
             {/* Header Section */}
             <div className="text-center space-y-6">
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground glow-white-soft">
                     Projects
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">

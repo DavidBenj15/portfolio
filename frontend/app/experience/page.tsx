@@ -41,7 +41,7 @@ export const metadata: Metadata = {
 export default function Experience() {
     return (
         <PageWrapper>
-            <Section id="experience" className="bg-background/50 py-16 sm:py-20 lg:py-24 h-full">
+            <Section id="experience" className="py-16 sm:py-20 lg:py-24 h-full">
                 <Container className="max-w-5xl">
                     <ExperienceContent />
                 </Container>

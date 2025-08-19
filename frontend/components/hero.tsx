@@ -72,7 +72,7 @@ const Hero = () => {
                     <div className="flex flex-col space-y-8 text-center lg:text-left">
                         {/* Name and Title */}
                         <div className="space-y-4">
-                            <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight">
+                            <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight glow-white-soft">
                                 David Benjamin
                             </h1>
                             <div className="w-24 h-1 bg-primary rounded-full mx-auto lg:mx-0"></div>

@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 export default function Education() {
     return (
         <PageWrapper>
-            <Section id="about" className="bg-background/50 sm:py-20 lg:py-24 h-full" >
+            <Section id="about" className="sm:py-20 lg:py-24 h-full" >
                 <Container className="max-w-5xl">
                     <EducationContent />
                 </Container>
