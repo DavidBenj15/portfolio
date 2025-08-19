@@ -269,7 +269,7 @@ export default function ProjectsContent() {
                                             size="lg"
                                             className="font-semibold"
                                         >
-                                            ⭐ Featured Project
+                                            ⭐ Featured
                                         </Chip>
                                     )}
                                 </div>

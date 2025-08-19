@@ -20,21 +20,22 @@ const Section: React.FC<SectionProps> = ({
 }) => {
   const paddingClasses = {
     none: '',
-    sm: 'px-4 sm:px-6 sm:py-12',
-    md: 'px-6 sm:px-8 sm:py-16',
-    lg: 'px-8 sm:px-12 sm:py-20 lg:px-16 lg:py-24',
-    xl: 'px-12 sm:px-16 sm:py-24 lg:px-20 lg:py-32',
+    sm: 'px-4 sm:px-6 py-8 sm:py-12',
+    md: 'px-6 sm:px-8 py-12 sm:py-16',
+    lg: 'px-8 sm:px-12 py-16 sm:py-20 lg:px-16 lg:py-24',
+    xl: 'px-12 sm:px-16 py-20 sm:py-24 lg:px-20 lg:py-32',
   };
 
   const sectionClasses = cn(
     'w-full box-border',
-    fullHeight && 'h-dvh',
+    // Changed from h-dvh to min-h-dvh to allow growth
+    fullHeight && 'min-h-dvh',
     paddingClasses[padding],
     className
   );
 
   const content = container ? (
-    <div className="mx-auto max-w-7xl w-full">
+    <div className="mx-auto max-w-7xl w-full h-full">
       {children}
     </div>
   ) : (
@@ -48,4 +49,4 @@ const Section: React.FC<SectionProps> = ({
   );
 };
 
-export default Section; 
+export default Section;

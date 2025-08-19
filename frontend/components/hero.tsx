@@ -80,12 +80,17 @@ const Hero = () => {
 
                         {/* Description */}
                         <div className="space-y-6">
-                            <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-2xl">
-                                Computer Science @ Johns Hopkins Univeristy{' '}
-                                <span className="text-primary font-semibold">Full Stack</span>{' | '}
-                                <span className="text-primary font-semibold">DevOps</span>{' | '}
-                                <span className="text-primary font-semibold">AI</span>
-                            </p>
+                            <div>
+                                <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-2xl">
+                                    Computer Science @ Johns Hopkins Univeristy
+                                </p>
+                                <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-2xl">
+                                    <span className="text-primary font-semibold">Full Stack</span>{' | '}
+                                    <span className="text-primary font-semibold">DevOps</span>{' | '}
+                                    <span className="text-primary font-semibold">AI</span>
+                                </p>
+                            </div>
+
                             
                             {/* Additional subtitle for context */}
                             <p className="text-lg text-muted-foreground/80 max-w-xl">
