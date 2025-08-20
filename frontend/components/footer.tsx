@@ -7,7 +7,7 @@ const Footer = () => {
   const socialLinks = [
     {
       name: "LinkedIn",
-      href: "https://www.linkedin.com/in/david-benjamin-9b342b290/",
+      href: "https://www.linkedin.com/in/davidbenj15/",
       icon: Linkedin,
       color: "primary" as const,
     },

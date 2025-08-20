@@ -11,9 +11,9 @@ const experiences = [
         location: 'Remote',
         date: 'June 2025 - Present',
         bullets: [
-            'Selected for a competitive 12-week fellowship (acceptance rate <2.5%) under direct mentorship of Meta Production Engineers, applying real - world Software Engineering and Site Reliability Engineering(SRE) practices.',
-            'Built and deployed a production-grade portfolio website using Linux (DigitalOcean VPS), Nginx (reverse proxy, rate limiting), Docker, and MySQL; implemented CI/ CD pipelines with GitHub Actions and enforced reliability through TDD with unit, integration, and system tests.',
-            'Integrated Prometheus and Grafana for observability, enabling real-time monitoring, metrics, and alerts to accelerate incident detection and resolution.'
+            'Selected for competitive 12-week fellowship (acceptance rate less than 2.5%) under the direct mentorship of Meta Production Engineers, applying Software and Site Reliability Engineering practices.',
+            'Deployed production-grade portfolio website on Linux (DigitalOcean VPS) with Nginx reverse proxy, Docker containerization, MySQL database, and CI / CD pipelines via GitHub Actions.',
+            'Implemented Prometheus/Grafana monitoring stack for real-time metrics, alerting, and incident response; gained proficiency in Linux system administration, TDD practices, microservices, and networking fundamentals(TCP / IP, DNS, HTTP, etc.) '
         ]
     },
     {
@@ -23,8 +23,8 @@ const experiences = [
         date: 'May 2025 - Present',
         bullets: [
             'Built a constraint-based reviewer assignment tool with Google OR-Tools (CP-SAT) and Django, cutting space telescope proposal scheduling from 7 days to under 1 hour while meeting 15+ constraints on bias, workload, and compliance.',
-            'Eliminated timeout failures by implementing asynchronous processing with Celery and Redis, enabling uninterrupted long - running constraint solver jobs and improving user reliability.',
-            'Developed a name disambiguation module leveraging RapidFuzz and nickname heuristics, significantly improving conflict detection accuracy to reduce bias during proposal - reviewer assignment.'
+            'Eliminated timeout failures by implementing asynchronous processing with Celery and Redis, enabling uninterrupted long - running constraint solver jobs and improving system reliability for users.',
+            'Engineered conflict-detection modules, including a name disambiguation system (RapidFuzz + heuristics) and a target coordinate resolver(Astropy), improving reviewer assignment accuracy and reducing bias.'
         ]
     },
     {
@@ -43,7 +43,7 @@ const experiences = [
         location: 'Baltimore, MD',
         date: 'May 2024 - May 2025',
         bullets: [
-            "Led a team of 9 to build the Atlantic League's first league-wide analytics platform, introducing MLB-style data access and tool sharing to modernize team operations.",
+            "Led a team of 9 to build the Atlantic League of Professional Baseball’s first league-wide analytics platform, introducing MLB-style advanced analytics access and tool sharing to modernize team operations.",
             "Democratized access to 60,000+ Trackman data points/game by deploying an ETL pipeline (Pandas, AWS Lambda, Docker) and REST API (PostgreSQL, API Gateway); currently used by 10+ developers to build 5+ statistical apps.",
             "Built and deployed a full-stack web app with Next.js, TypeScript, Express.js, and Tailwind CSS to unify the discovery and use of analytics baseball tools; currently serving 100+ users."
         ]

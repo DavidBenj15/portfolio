@@ -30,10 +30,6 @@ const navItems = [
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleLinkClick = () => {
-    setIsMenuOpen(false);
-  };
-
   return (
     <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent className="sm:hidden">
@@ -47,7 +43,6 @@ const Navigation = () => {
           navItems.map((item) => (
             <NavbarItem key={item.name}>
               <Link color="foreground" href={item.link}
-              onClick={handleLinkClick}
               >
                 {item.name.toUpperCase()}
               </Link>
@@ -60,7 +55,6 @@ const Navigation = () => {
         {navItems.map((item) => (
           <NavbarMenuItem key={item.name}>
             <Link color="foreground" href={item.link}
-            onClick={handleLinkClick}
             >
               {item.name.toUpperCase()}
             </Link>

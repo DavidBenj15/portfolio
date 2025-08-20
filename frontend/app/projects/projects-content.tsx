@@ -76,7 +76,6 @@ const projects: Project[] = [
         //     'Created comprehensive documentation and training materials'
         // ],
         demoUrl: 'https://youtu.be/k0s5DXZZuMM',
-        readMoreUrl: 'https://github.com/DavidBenj15/coldmap'
     },
     {
         id: 'gec',

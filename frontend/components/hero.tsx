@@ -47,14 +47,14 @@ const Hero = () => {
     return (
         <>
             <Section id="hero" className="flex items-center justify-center h-full min-h-screen">
-                <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto w-full">
+                <div className="grid lg:grid-cols-2 items-center gap-16 max-w-6xl mx-auto w-full">
                     {/* Left column - Profile Image */}
                     <div className="flex justify-center lg:justify-start">
                         <div className="relative">
                             {/* Main profile image with enhanced styling */}
                             <Card className="bg-card border border-border/50 shadow-2xl overflow-hidden">
                                 <Image
-                                    src="/images/me_square.jpg"
+                                    src="/images/me_speaking_square.jpg"
                                     alt="David Benjamin"
                                     width={400}
                                     height={400}
@@ -72,7 +72,7 @@ const Hero = () => {
                     <div className="flex flex-col space-y-8 text-center lg:text-left">
                         {/* Name and Title */}
                         <div className="space-y-4">
-                            <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight glow-white-soft">
+                            <h1 className="text-5xl lg:text-7xl font-bold text-foreground leading-tight lg:glow-white-soft">
                                 David Benjamin
                             </h1>
                             <div className="w-24 h-1 bg-primary rounded-full mx-auto lg:mx-0"></div>
@@ -94,7 +94,7 @@ const Hero = () => {
                             
                             {/* Additional subtitle for context */}
                             <p className="text-lg text-muted-foreground/80 max-w-xl">
-                                Building impactful, customer-first solutions. Fueled by a growth mindset. Based in Baltimore, MD and Philadelphia, PA.
+                                Building impactful solutions. Fueled by a growth mindset. Based in Baltimore, MD and Philadelphia, PA.
                             </p>
                         </div>
 
