@@ -7,8 +7,8 @@ import Layout from '@/app/layout';
 
 export const metadata: Metadata = {
   title: "Home | David Benjamin",
-  description: "David Benjamin - Computer Science student at Johns Hopkins University, passionate about Full Stack Development, DevOps, and AI. View my portfolio, skills, and experience.",
-  keywords: ["David Benjamin", "Computer Science", "Full Stack Developer", "DevOps", "AI", "Johns Hopkins University", "Software Engineer", "Portfolio"],
+  description: "David Benjamin - Computer Science student at Johns Hopkins University, passionate about Full Stack Development, DevOps, and AI/ML. View my portfolio, skills, and experience.",
+  keywords: ["David Benjamin", "Computer Science", "Full Stack Developer", "DevOps", "AI/ML", "Johns Hopkins University", "Software Engineer", "Portfolio"],
   authors: [{ name: "David Benjamin" }],
   creator: "David Benjamin",
   openGraph: {
