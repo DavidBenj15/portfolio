@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Home | David Benjamin",
-  description: "David Benjamin - Computer Science student at Johns Hopkins University, passionate about Full Stack Development, DevOps, and AI. Software Engineer with experience at Meta, NASA, and more.",
+  description: "David Benjamin - Computer Science student at Johns Hopkins University, passionate about Full Stack Development, DevOps, and AI. Software Engineer with experience at NASA, Meta and Major League Hacking, and more.",
   keywords: ["David Benjamin", "Computer Science", "Full Stack Developer", "DevOps", "AI", "Johns Hopkins University", "Software Engineer", "Portfolio", "Meta", "NASA", "Production Engineering"],
   authors: [{ name: "David Benjamin", url: "https://davidbenjamin.dev" }],
   creator: "David Benjamin",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     url: "https://davidbenjamin.dev",
     siteName: "David Benjamin Portfolio",
     title: "David Benjamin - Portfolio",
-    description: "Computer Science student and Full Stack Developer passionate about building impactful solutions",
+    description: "Computer Science student passionate about building impactful solutions",
     images: [
       {
         url: "/images/me_square.jpg",

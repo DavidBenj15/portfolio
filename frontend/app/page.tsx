@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   creator: "David Benjamin",
   openGraph: {
     title: "David Benjamin - Portfolio",
-    description: "Computer Science student and Full Stack Developer passionate about building impactful solutions",
+    description: "Computer Science student passionate about building impactful solutions",
     type: "website",
     locale: "en_US",
   },
