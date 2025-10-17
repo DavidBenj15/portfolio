@@ -86,7 +86,7 @@ const Hero = () => {
                                 </p>
                                 <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-2xl">
                                     <span className="text-primary font-semibold">Full Stack</span>{' | '}
-                                    <span className="text-primary font-semibold">DevOps</span>{' | '}
+                                    <span className="text-primary font-semibold">SRE</span>{' | '}
                                     <span className="text-primary font-semibold">AI/ML</span>
                                 </p>
                             </div>
