@@ -1,10 +1,8 @@
-version: "3"
+version: "3.8"
 services:
   backend:
     container_name: myportfolio-backend
-    build:
-      context: ./app
-      dockerfile: Dockerfile
+    image: ghcr.io/DavidBenj15/portfolio-backend:latest
     restart: always
     env_file:
       - .env
@@ -22,15 +20,10 @@ services:
 
   frontend:
     container_name: myportfolio-frontend
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: ghcr.io/DavidBenj15/portfolio-frontend:latest
     ports:
       - "3000:80"
-    # environment:
-    #   - CHOKIDAR_USEPOLLING=true  # useful for hot reloading in Docker
-  
-  
+
   mysql:
     container_name: mysql
     image: mariadb
@@ -49,8 +42,8 @@ services:
       - DHPARAM_SIZE=2048
       - RSA_KEY_SIZE=2048
       - DOMAINS=davidbenjamin.dev www.davidbenjamin.dev
-      - CERTBOT_TEST_CERT=0  # Set to 1 for testing, 0 for production
-      - STAGING=0  # Set to 1 for staging certificates
+      - CERTBOT_TEST_CERT=0
+      - STAGING=0
     ports:
       - 80:80
       - 443:443
@@ -65,4 +58,3 @@ services:
 volumes:
   mydatabase:
   nginx_secrets:
-  

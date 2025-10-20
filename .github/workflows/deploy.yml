@@ -3,48 +3,111 @@ name: Deploy
 on:
   workflow_run:
     workflows: ["Run Tests"]
-    types:
-      - completed
+    types: [completed]
   workflow_dispatch:
 
+env:
+  REGISTRY: ${{ secrets.REGISTRY }}
+  REPOSITORY_NAMESPACE: DavidBenj15
+  TAG: ${{ github.sha }}
+
 jobs:
-  deploy:
-    name: "Deploy to VPS"
-    # Only run if the trigger is from workflow_run AND tests succeeded,
-    # OR it's manually triggered via workflow_dispatch
+  build_and_push:
+    name: Build & Push Images
+    runs-on: ubuntu-latest
     if: >
       (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') ||
       (github.event_name == 'workflow_dispatch')
-    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
-      - name: Configure SSH
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build & push backend image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./app
+          file: ./app/Dockerfile
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAMESPACE }}/portfolio-backend:${{ env.TAG }}
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAMESPACE }}/portfolio-backend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build & push frontend image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./frontend
+          file: ./frontend/Dockerfile
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAMESPACE }}/portfolio-frontend:${{ env.TAG }}
+            ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAMESPACE }}/portfolio-frontend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Deploy to VPS
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_IP: ${{ secrets.SSH_IP }}
+          REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+          REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+          REGISTRY: ${{ env.REGISTRY }}
+          IMAGE_NAMESPACE: ${{ env.REPOSITORY_NAMESPACE }}
+          IMAGE_TAG: ${{ env.TAG }}
         run: |
-          mkdir -p ~/.ssh/
+          mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy-key.pem
           chmod 600 ~/.ssh/deploy-key.pem
-          # DigitalOcean specific - just an abstraction for SSHing.
-          cat >> ~/.ssh/config <<END
+          cat >> ~/.ssh/config <<'END'
           Host my-vps
             HostName $SSH_IP
             User $SSH_USER
             IdentityFile ~/.ssh/deploy-key.pem
             StrictHostKeyChecking no
           END
-        env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_IP: ${{ secrets.SSH_IP }}
 
-      - name: Deploy site
-        run: ssh my-vps '~/portfolio/redeploy-site.sh'
+          # Optionally make sure droplet can login to registry (if needed)
+          # We'll run a remote docker login using the credentials (this avoids storing creds on the droplet)
+          ssh my-vps <<'REMOTE'
+            set -e
+            echo "Logging into registry on droplet..."
+            # Pipe password into docker login to avoid shell-visible ARGs
+            printf "%s" "$REGISTRY_PASSWORD" | docker login $REGISTRY -u "$REGISTRY_USERNAME" --password-stdin || true
 
-      - name: Print container status
-        run: ssh my-vps 'docker ps'
+            cd ~/portfolio || exit 0
+            # Pull the new images
+            docker compose -f docker-compose.prod.yml pull
+
+            # Restart with new images
+            docker compose -f docker-compose.prod.yml up -d
+
+            # Optional: cleanup old images
+            docker image prune -f
+            echo "Deployment on droplet complete."
+          REMOTE
 
       - name: Send Discord success notification
-        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+        if: success()
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful - ${{ env.TAG }}"
 
       - name: Send Discord failure notification
         if: failure()
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=❌ Deployment Failed"
-
