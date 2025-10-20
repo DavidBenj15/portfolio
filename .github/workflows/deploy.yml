@@ -63,16 +63,8 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Deploy to VPS
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_IP: ${{ secrets.SSH_IP }}
-          REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
-          REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
-          REGISTRY: ${{ env.REGISTRY }}
-          IMAGE_NAMESPACE: ${{ env.REPOSITORY_NAMESPACE }}
-          IMAGE_TAG: ${{ env.TAG }}
         run: |
+          echo "$SSH_IP"
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy-key.pem
           chmod 600 ~/.ssh/deploy-key.pem
@@ -103,6 +95,15 @@ jobs:
             docker image prune -f
             echo "Deployment on droplet complete."
           REMOTE
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_IP: ${{ secrets.SSH_IP }}
+          REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+          REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+          REGISTRY: ${{ env.REGISTRY }}
+          IMAGE_NAMESPACE: ${{ env.REPOSITORY_NAMESPACE }}
+          IMAGE_TAG: ${{ env.TAG }}
 
       - name: Send Discord success notification
         if: success()
