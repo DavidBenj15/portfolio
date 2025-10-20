@@ -2,7 +2,7 @@ version: "3.8"
 services:
   backend:
     container_name: myportfolio-backend
-    image: ghcr.io/DavidBenj15/portfolio-backend:latest
+    image: ghcr.io/davidbenj15/portfolio-backend:latest
     restart: always
     env_file:
       - .env
@@ -20,7 +20,7 @@ services:
 
   frontend:
     container_name: myportfolio-frontend
-    image: ghcr.io/DavidBenj15/portfolio-frontend:latest
+    image: ghcr.io/davidbenj15/portfolio-frontend:latest
     ports:
       - "3000:80"
 

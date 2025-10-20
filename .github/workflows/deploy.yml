@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: ${{ secrets.REGISTRY }}
-  REPOSITORY_NAMESPACE: DavidBenj15
+  REPOSITORY_NAMESPACE: davidbenj15
   TAG: ${{ github.sha }}
 
 jobs:
