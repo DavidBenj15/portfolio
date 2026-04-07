@@ -9,7 +9,7 @@ This is a full-stack portfolio app with three distinct layers:
 - **Backend**: Flask + Peewee ORM — lives in `/app`
 - **Database**: MariaDB, accessed only by the backend
 
-In production, Nginx (configured in `user_conf.d/`) proxies `/api/*` to Flask (port 5000) and everything else to Next.js (port 3000). Docker Compose wires all three services together.
+In production, Caddy (configured in `Caddyfile`) proxies `/api/*` to Flask (port 5000) and everything else to Next.js (port 3000), and handles TLS automatically via Let's Encrypt. Docker Compose wires all three services together.
 
 ## Common Commands
 
