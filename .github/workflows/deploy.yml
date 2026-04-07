@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - local_docker
+      - main
   workflow_dispatch:
 
 env:
