@@ -3,7 +3,6 @@ www.davidbenjamin.dev {
 }
 
 davidbenjamin.dev {
-	reverse_proxy /api/* backend:5000
 	reverse_proxy /grafana/* 138.197.43.79:3001
 
 	reverse_proxy * frontend:80

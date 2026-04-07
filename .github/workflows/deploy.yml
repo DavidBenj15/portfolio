@@ -1,9 +1,9 @@
 name: Deploy
 
 on:
-  workflow_run:
-    workflows: ["Run Tests"]
-    types: [completed]
+  push:
+    branches:
+      - local_docker
   workflow_dispatch:
 
 env:
@@ -37,18 +37,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-
-      - name: Build & push backend image
-        uses: docker/build-push-action@v4
-        with:
-          context: ./app
-          file: ./app/Dockerfile
-          push: true
-          tags: |
-            ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAMESPACE }}/portfolio-backend:${{ env.TAG }}
-            ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAMESPACE }}/portfolio-backend:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
 
       - name: Build & push frontend image
         uses: docker/build-push-action@v4

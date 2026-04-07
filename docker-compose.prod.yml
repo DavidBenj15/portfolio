@@ -1,37 +1,10 @@
 version: "3.8"
 services:
-  backend:
-    container_name: myportfolio-backend
-    image: ghcr.io/davidbenj15/portfolio-backend:latest
-    restart: always
-    env_file:
-      - .env
-    environment:
-      - FLASK_ENV=production
-      - FLASK_APP=__init__.py
-    ports:
-      - "5000:5000"
-    volumes:
-      - ./app:/app
-    working_dir: /app
-    command: flask run --host=0.0.0.0
-    depends_on:
-      - mysql
-
   frontend:
     container_name: myportfolio-frontend
     image: ghcr.io/davidbenj15/portfolio-frontend:latest
     ports:
       - "3000:80"
-
-  mysql:
-    container_name: mysql
-    image: mariadb
-    restart: always
-    env_file:
-      - .env
-    volumes:
-      - mydatabase:/var/lib/mysql
 
   caddy:
     container_name: caddy
@@ -45,7 +18,6 @@ services:
       - caddy_data:/data
       - caddy_config:/config
     depends_on:
-      - backend
       - frontend
 
 volumes:

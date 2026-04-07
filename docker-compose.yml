@@ -1,25 +1,5 @@
 version: "3"
 services:
-  backend:
-    container_name: myportfolio-backend
-    build:
-      context: ./app
-      dockerfile: Dockerfile
-    restart: always
-    env_file:
-      - .env
-    environment:
-      - FLASK_ENV=development
-      - FLASK_APP=__init__.py
-    ports:
-      - "5000:5000"
-    volumes:
-      - ./app:/app
-    working_dir: /app
-    command: flask run --host=0.0.0.0
-    depends_on:
-      - mysql
-
   frontend:
     container_name: myportfolio-frontend
     image: node:18
