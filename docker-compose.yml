@@ -13,14 +13,14 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true  # useful for hot reloading in Docker
 
-  mysql:
-    container_name: mysql
-    image: mariadb
-    restart: always
-    env_file:
-      - .env
-    volumes:
-      - mydatabase:/var/lib/mysql
+#   mysql:
+#     container_name: mysql
+#     image: mariadb
+#     restart: always
+#     env_file:
+#       - .env
+#     volumes:
+#       - mydatabase:/var/lib/mysql
 
-volumes:
-  mydatabase:
+# volumes:
+#   mydatabase:

@@ -22,14 +22,6 @@ const Footer = () => {
   return (
     <footer id="footer" className="w-full py-8 mt-auto border-t border-border">
       <div className="container mx-auto px-4 flex flex-col items-center space-y-4">
-        {/* 1. "Let's get in touch" text */}
-        <div className="text-center">
-          <p className="text-2xl font-bold text-foreground">
-            Let's get in touch!
-          </p>
-        </div>
-        
-        {/* 2. Social icons (LinkedIn, GitHub) */}
         <div className="flex justify-center items-center space-x-4">
           {socialLinks.map((link) => (
             <Button

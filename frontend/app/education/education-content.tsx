@@ -18,6 +18,16 @@ const courseCategories = [
         name: 'Computer Science',
         courses: [
             {
+                name: 'AI-Enabled Software Engineering',
+                description: `This course is a comprehensive guide for students eager to explore the world of generative AI and its practical applications in software development. Designed with a hands-on approach, it equips you with the foundational knowledge of generative AI, introduces a suite of AI development tools, and covers key AI platforms and frameworks. You'll gain the skills needed to build and deploy AI-powered applications, culminating in a substantial team project that offers real-world experience in creating AI-driven software. By the end of the course, you'll be prepared to integrate AI into your applications and development process, unlocking new avenues for creativity and innovation.`,
+                code: 'EN.601.423'
+            },
+            {
+                name: 'Cognitive Principles of Artificial Intelligence',
+                description: `The rise of artificial intelligence (AI) is one of the most powerful—and controversial—breakthroughs of our lifetime. Some say that large language models, like ChatGPT, are oracles that will render human thought obsolete. Others say that these models are “stochastic parrots” with no real understanding of the text they produce. Who is right? And what would it even mean for a machine to be able to think and use languages like humans do? This course will give students the tools to answer these questions and critically analyze AI through a grounding in cognitive science, with a focus on language. Topics will include the technical foundation of language models, human language learning, syntax, semantics, pragmatics, reasoning, creativity, and how AI use is affecting our own minds.`,
+                code: 'AS.050.251'
+            },
+            {
                 name: 'Artificial Intelligence',
                 description: 'This course is recommended for scientists and engineers with a genuine curiosity about the fundamental obstacles in getting machines to perform tasks such as deduction, learning, planning and navigation. It covers methods for automated reasoning, automatic problem solvers and planners, knowledge representation mechanisms, game playing, machine learning, and statistical pattern recognition.',
                 code: 'EN.601.464'
@@ -31,6 +41,11 @@ const courseCategories = [
                 name: 'Computer System Fundamentals',
                 description: 'This course covers modern computer systems from a software perspective. Topics include binary data representation, machine arithmetic, assembly language, computer architecture, performance optimization, memory hierarchy and cache organization, virtual memory, Unix systems programming, network programming, and concurrency. Hardware and software interactions relevant to computer security are highlighted. Students will gain hands-on experience with these topics in a series of programming assignments.',
                 code: 'EN.601.229'
+            },
+            {
+                name: 'Computer Networks',
+                description: `Topics covered will include application layer protocols (e.g. HTTP, FTP, SMTP), transport layer protocols (UDP, TCP), network layer protocols (e.g. IP, ICMP), link layer protocols (e.g. Ethernet) and wireless protocols (e.g. IEEE 802.11). The course will also cover routing protocols such as link state and distance vector, multicast routing, and path vector protocols (e.g. BGP). The class will examine security issues such as firewalls and denial of service attacks. We will also study DNS, NAT, Web caching and CDNs, peer to peer, and protocol tunneling. Finally, we will explore security protocols (e.g. TLS, SSH, IPsec), as well as some basic cryptography necessary to understand these.`,
+                code: 'EN.601.414'
             },
             {
                 name: 'Intro Algorithms',
@@ -56,11 +71,6 @@ const courseCategories = [
                 name: 'Introduction to Deep Learning for Medical Imaging',
                 description: 'This course provides a comprehensive overview of AI in medical imaging, covering classification, segmentation, and the use of different data types and modalities. It explores deep learning techniques with PyTorch, algorithms for medical segmentation, preprocessing and data augmentation, synthetic data generation, domain adaptation, bias and uncertainty handling, limited supervision learning, emerging architectures, and the applications of clinical AI in research and practice, including enhancing diagnosis, treatment, and patient outcomes.',
                 code: 'EN.500.111',
-            },
-            {
-                name: 'Studying the Brain with Neural Data Science',
-                description: 'This course equips students with the skills to analyze and interpret neural data using advanced computational techniques. Students will work with real-world neural data to extract scientific insights, while focusing on computational methods such as machine learning, dimensionality reduction, regression models, and dynamical systems',
-                code: 'EN.500.312'
             },
             {
                 name: 'Scientific Computing',
@@ -158,7 +168,7 @@ export default function EducationContent() {
                         </p>
                         <div className="flex flex-col sm:flex-row sm:gap-6 gap-1 text-sm text-muted-foreground">
                             <p>Expected Graduation: May 2027</p>
-                            <p>GPA: 3.92</p>
+                            <p>GPA: 3.93</p>
                         </div>
                     </div>
                 </div>

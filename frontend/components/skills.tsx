@@ -42,6 +42,9 @@ const programmingLanguages = [
 
 const tools = [
     {
+        name: 'Kubernetes'
+    },
+    {
         name: 'Linux/Unix',
     },
     {
@@ -135,7 +138,7 @@ const Skills = () => {
             <Container>
                 <div className="space-y-8">
                     <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-                        Technical Skills
+                        Skills
                     </h2>
 
                     <div className="space-y-10">

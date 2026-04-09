@@ -6,6 +6,20 @@ import { Accordion, AccordionItem } from "@heroui/accordion";
 
 const experiences = [
     {
+        name: 'SpaceX',
+        title: 'Software Engineer Intern',
+        location: 'Hawthorne, CA',
+        date: 'Incoming Fall 2026',
+        bullets: []
+    },
+    {
+        name: 'Meta',
+        title: 'Production Engineering Intern',
+        location: 'Menlo Park, CA',
+        date: 'Incoming Summer 2026',
+        bullets: []
+    },
+    {
         name: 'NASA – National Aeronautics and Space Administration',
         title: 'Software Engineer Intern',
         location: 'Greenbelt, MD',
