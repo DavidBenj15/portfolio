@@ -156,7 +156,7 @@ const Hero = () => {
                             onClick={downloadResume}
                             className="px-6 py-2"
                         >
-                            Download PDF
+                            Download PDF HELLO
                         </Button>
                         <Button 
                             variant="bordered" 
