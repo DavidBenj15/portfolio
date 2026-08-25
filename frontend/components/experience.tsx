@@ -7,59 +7,43 @@ import { Accordion, AccordionItem } from "@heroui/accordion";
 const experiences = [
     {
         name: 'SpaceX',
-        title: 'Software Engineer Intern',
+        title: 'Software Engineer Intern (Incoming)',
         location: 'Hawthorne, CA',
-        date: 'Incoming Fall 2026',
+        date: 'September 2026 \u2013 December 2026',
         bullets: []
     },
     {
         name: 'Meta',
-        title: 'Production Engineering Intern',
-        location: 'Menlo Park, CA',
-        date: 'Incoming Summer 2026',
-        bullets: []
-    },
-    {
-        name: 'NASA – National Aeronautics and Space Administration',
-        title: 'Software Engineer Intern',
-        location: 'Greenbelt, MD',
-        date: 'May 2025 – Present',
+        title: 'Production Engineer Intern',
+        location: 'Burlingame, CA',
+        date: 'June 2026 \u2013 August 2026',
         bullets: [
-            'Reduced scheduling time for hundreds of telescope proposals from 7 days to under 1 hour by engineering a constraint-based reviewer assignment system (Google OR-Tools, Django) that enforced 20+ compliance, fairness, and workload constraints.',
-            'Eliminated 100% of observed timeout failures in telescope review scheduling by implementing Celery + Redis for async orchestration, enabling continuous processing of multi-hour optimization jobs critical to proposal review.',
-            'Improved fairness and accuracy in reviewer assignments through conflict-detection modules, including fuzzy name disambiguation (RapidFuzz) and coordinate resolution (Astropy), reducing bias and strengthening scientific integrity.'
+            'Automated performance tuning for all production wearables LLMs by building a Rust CLI that orchestrates safe deployment cloning, controlled load testing, and automated analysis \u2014 surfacing configurations that improved throughput by up to 124%.',
+            'Accelerated serving config discovery from days to minutes by designing an adaptive agent orchestration system that proposes tuning strategies grounded in live deployment context via read-only tool use, executes experiments, and iterates based on measured results \u2014 converging on optimal serving configs from 170+ parameters.',
+            'Eliminated progress loss across multi-hour tuning experiments and enabled cross-team result sharing by engineering an event-log experiment registry with checkpoint-based resume and queryable trial history.'
         ]
     },
     {
-        name: 'Meta – Major League Hacking Fellowship',
-        title: 'Site Reliability Engineering Fellow',
-        location: 'Remote',
-        date: 'June 2025 – September 2025',
+        name: 'NASA \u2013 National Aeronautics and Space Administration',
+        title: 'Software Engineer Intern',
+        location: 'Greenbelt, MD',
+        date: 'May 2025 \u2013 May 2026',
         bullets: [
-            'One of less than 2.5% accepted into Meta and MLH’s 12-week Site Reliability Engineering fellowship, collaborating with Meta Production Engineers to design reliable, scalable, production-ready systems.',
-            'Deployed production-grade portfolio website on Linux (DigitalOcean VPS) using Nginx reverse proxy, Docker containerization, and MySQL database; gained proficiency with Linux system administration and core networking concepts (HTTP, DNS, TCP/IP).',
-            'Built CI/CD pipelines with GitHub Actions and implemented Prometheus/Grafana monitoring for real-time metrics, alerting, and incident response, enhancing performance troubleshooting, observability, and incident management skills.'
+            'Accelerated review cycles for 500+ telescope proposals from 7 days to under 1 hour by building an AI-powered reviewer assignment system with constraint programming (Google OR-Tools, Django), enforcing 20+ optimization constraints.',
+            'Enabled processing of 2+ hour optimization workflows by implementing Celery + Redis async architecture with Flower monitoring dashboard for mission-critical telescope proposal reviews.',
+            'Built conflict-detection algorithms (RapidFuzz, Astropy) solving name disambiguation and coordinate matching challenges, ensuring bias-free reviewer assignments across $8 million in annual telescope funding decisions.',
+            'Sustained uptime for NuSTAR and XRISM scientists during time-critical review cycles by orchestrating Kubernetes deployments \u2014 authoring manifests (Deployments, Ingress, CronJobs, PVCs) with Kustomize overlays and a GitHub Actions CI/CD pipeline enabling zero-downtime rolling updates.'
         ]
     },
     {
         name: 'Johns Hopkins Sports Analytics Research Group',
         title: 'Lead Software Engineer',
         location: 'Baltimore, MD',
-        date: 'May 2024 – May 2025',
+        date: 'May 2024 \u2013 May 2025',
         bullets: [
-            'Directed a 9-person team to deliver the Atlantic League of Professional Baseball’s first league-wide analytics platform, providing MLB-caliber data access and tool sharing that modernized team operations.',
-            'Engineered and deployed an ETL pipeline (Pandas, AWS Lambda, Docker) and REST API (PostgreSQL, API Gateway) that democratizes 60K+ Trackman datapoints per game; now powering 10+ developers building 5+ statistical apps.',
+            'Led a 9-person team to deliver the Atlantic League of Professional Baseball\'s first league-wide analytics platform, providing MLB-caliber data access and tool sharing that modernized team operations.',
+            'Engineered and deployed ETL pipeline (Pandas, AWS Lambda, Docker) and RESTful API (PostgreSQL, API Gateway) democratizing 60K+ Trackman datapoints per game for 20+ developers building analytics tools.',
             'Launched a full-stack web app (Next.js, TypeScript, Express.js, Tailwind CSS) centralizing analytics tools; adopted by 100+ coaches, analysts, and staff for data-driven decision-making.'
-        ]
-    },
-    {
-        name: 'HopHacks',
-        title: 'Full Stack Software Engineer, Organizer',
-        location: 'Baltimore, MD',
-        date: 'December 2024 – Present',
-        bullets: [
-            'Engineered a GitHub Actions–based CI/CD pipeline that fully automated website deployment, eliminating 100% of manual EC2 deployment steps and achieving zero-downtime releases through rsync + build promotion.',
-            'Developed core full-stack features (React, Flask, MongoDB, S3) supporting 500+ hackers and judges, collaborating across 5 functional teams with Agile workflows to enhance registration, judging, and overall event experience.'
         ]
     }
 ];

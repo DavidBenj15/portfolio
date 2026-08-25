@@ -168,7 +168,7 @@ export default function EducationContent() {
                         </p>
                         <div className="flex flex-col sm:flex-row sm:gap-6 gap-1 text-sm text-muted-foreground">
                             <p>Expected Graduation: May 2027</p>
-                            <p>GPA: 3.93</p>
+                            <p>GPA: 3.94</p>
                         </div>
                     </div>
                 </div>

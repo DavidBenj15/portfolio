@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { HeroUIProvider } from "@heroui/system";
+import { Providers } from "@/components/providers";
 import Navigation from "@/components/ui/navigation";
 import Footer from "@/components/footer";
 
@@ -69,6 +69,9 @@ export const metadata: Metadata = {
   category: "technology",
   classification: "portfolio",
   referrer: "origin-when-cross-origin",
+};
+
+export const viewport: Viewport = {
   colorScheme: "dark",
   themeColor: "#68ACE5",
 };
@@ -83,13 +86,13 @@ export default function RootLayout({
       <body
         className={`${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <HeroUIProvider>
+        <Providers>
           <Navigation />
           <main className="flex-1">
             {children}
           </main>
           <Footer />
-        </HeroUIProvider>
+        </Providers>
       </body>
     </html>
   );

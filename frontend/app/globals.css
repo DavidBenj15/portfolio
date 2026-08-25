@@ -141,6 +141,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem; /* offset for fixed navbar */
   }
 
   body {

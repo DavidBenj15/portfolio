@@ -20,7 +20,7 @@ const images = [
         height: 35,
     },
     {
-        src: '/images/mlh.png',
+        src: '/images/spacex.png',
         height: 35,
     }
 ]
@@ -46,7 +46,7 @@ const Hero = () => {
 
     return (
         <>
-            <Section id="hero" className="flex items-center justify-center h-full min-h-screen">
+            <Section id="hero" className="flex items-center justify-center min-h-[calc(100dvh-4rem)]">
                 <div className="grid lg:grid-cols-2 items-center gap-16 max-w-6xl mx-auto w-full">
                     {/* Left column - Profile Image */}
                     <div className="flex justify-center lg:justify-start">
@@ -54,7 +54,7 @@ const Hero = () => {
                             {/* Main profile image with enhanced styling */}
                             <Card className="bg-card border border-border/50 shadow-2xl overflow-hidden">
                                 <Image
-                                    src="/images/me_speaking_square.jpg"
+                                    src="/images/hiking_square.jpg"
                                     alt="David Benjamin"
                                     width={400}
                                     height={400}
@@ -82,20 +82,20 @@ const Hero = () => {
                         <div className="space-y-6">
                             <div>
                                 <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-2xl">
-                                    Computer Science @ Johns Hopkins Univeristy
+                                    Computer Science @ Johns Hopkins University
                                 </p>
                                 <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-2xl">
-                                    <span className="text-primary font-semibold">Full Stack</span>{' | '}
-                                    <span className="text-primary font-semibold">SRE</span>{' | '}
+                                    <span className="text-primary font-semibold">Backend</span>{' | '}
+                                    <span className="text-primary font-semibold">Infrastructure</span>{' | '}
                                     <span className="text-primary font-semibold">AI/ML</span>
                                 </p>
                             </div>
 
                             
                             {/* Additional subtitle for context */}
-                            <p className="text-lg text-muted-foreground/80 max-w-xl">
-                                Building impactful solutions. Fueled by a growth mindset. Based in Baltimore, MD and Philadelphia, PA.
-                            </p>
+                            {/* <p className="text-lg text-muted-foreground/80 max-w-xl">
+                                Building to make a difference
+                            </p> */}
                         </div>
 
                         {/* Call to action buttons */}

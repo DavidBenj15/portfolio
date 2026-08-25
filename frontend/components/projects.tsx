@@ -25,7 +25,6 @@ interface Project {
     liveUrl?: string;
     demoUrl?: string;
     readMoreUrl?: string;
-    featured: boolean;
     duration?: string;
     teamSize?: string;
     achievements?: string[];
@@ -35,60 +34,30 @@ interface Project {
 
 const projects: Project[] = [
     {
-        id: 'coldmap',
-        title: 'ColdMap',
-        shortDescription: 'Palantir AIP dashboard for predicting and visualizing cold storage risk factors.',
+        id: 'load-in',
+        title: 'load_in',
+        shortDescription: 'AI developer onboarding engine that transforms any GitHub repo into a personalized curriculum.',
         longDescription: `
-    • Problem: Cell therapy manufacturers lose ~$35B annually from temperature deviations in the cryogenic supply chain. Even brief delays or heat exposure can render life-saving treatments unusable.
-    
-    • Solution: I built ColdMap using Palantir AIP and GPT-4o to help logistics teams predict, explain, and mitigate shipment risks. Data flows through an AIP-hosted pipeline and logistic regression model to calculate excursion probabilities, visualized on an interactive map. Users can filter by risk level, timeframe, or location; query ColdChat (a GPT-4o chatbot with shipment context) for explanations of top risk factors; and trigger AI workflows to notify stakeholders.
-    
-    • Significance: Developed in ~2 weeks for Palantir’s “Semester at Palantir” program, ColdMap highlights my ability to learn new tools quickly and deliver a data-driven MVP. Even as a prototype, it shows how AI-powered workflows could reduce billion-dollar losses while safeguarding patient access to critical therapies.
-`,
+    • Built with a team of 6 an AI developer onboarding engine that transforms any GitHub repo into a personalized curriculum; engineered the external resources agent pipeline \u2014 fetching role-tailored YouTube tutorials, articles (Tavily), and reference repos \u2014 as a module within a LangGraph multi-agent system.
 
-        coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png',
-        screenshots: [
-            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/cover.png', caption: 'ColdMap dashboard' },
-            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/filter.png', caption: 'Filter for riskiest shipments departing from Johns Hopkins in the next week' },
-            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/coldchat.png', caption: 'ColdChat AI workflows' },
-            { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/coldmap/pipeline.png', caption: 'A visualization of the AIP data transformation pipeline' }
-        ],
-        technologies: ['scikit-learn', 'polars', 'GPT-4o', 'Palantir AIP', 'Python'],
+    • Grounded AI-generated onboarding quiz answers in actual codebase chunks via pgvector retrieval, ensuring source-cited, hallucination-resistant responses.
+
+    • Built end-to-end Slack bot with an agentic Q&A handler \u2014 using Claude tool use to query live trainee progress.
+`,
+        coverImage: '/images/hiking_square.jpg',
+        screenshots: [],
+        technologies: ['LangGraph', 'pgvector', 'Claude API', 'Slack', 'Tavily', 'Python'],
         category: 'AI/ML',
-        githubUrl: 'https://github.com/DavidBenj15/coldmap',
-        featured: true,
-        duration: '2 weeks',
-        teamSize: 'Solo',
-        // achievements: [
-        //     'Reduced risk assessment time by 85%',
-        //     'Improved prediction accuracy by 23%',
-        //     'Successfully deployed to production environment',
-        //     'Integrated with existing Palantir infrastructure'
-        // ],
-        // challenges: [
-        //     'Complex data integration with legacy systems',
-        //     'Real-time model performance optimization',
-        //     'Ensuring model interpretability for stakeholders'
-        // ],
-        // solutions: [
-        //     'Built robust ETL pipelines using Polars for efficient data processing',
-        //     'Implemented model monitoring and A/B testing frameworks',
-        //     'Created comprehensive documentation and training materials'
-        // ],
-        demoUrl: 'https://youtu.be/k0s5DXZZuMM',
+        teamSize: '6',
     },
     {
         id: 'gec',
-        title: 'LEAP (2nd place / 500+ global teams @ 2024 Alibaba Global E-Commerce Challenge)',
-        shortDescription: "Built and pitched an augmented reality 'view in your room' app to boost Alibaba's sales in developing countries.",
+        title: 'Alibaba Global E-Commerce Challenge (2nd / 500+ Global Teams)',
+        shortDescription: "Designed an AR 'view in your room' app to reduce purchase uncertainty in Southeast Asian e-commerce \u2014 built for Lazada integration.",
         longDescription: `
-    • Prompt: "Revolutionize e-commerce with AI."
-    
-    • Problem: The Philippines’ e-commerce market is projected to reach $24B by 2025. While Amazon’s AR boosted sales by ~9%, local competitors have yet to adopt similar solutions.
-    
-    • Solution: We built LEAP (Lazada Enhanced AR Platform), an AR app that lets shoppers view and compare products in their own space using their phone’s camera. LEAP is designed to integrate with Lazada (Alibaba’s Filipino e-commerce platform), helping customers make more confident purchases.
-    
-    • Process: Competing in Alibaba’s 2024 E-Commerce Challenge (500+ teams worldwide), we had 2 weeks to draft our proposal, 3 days to build a prototype after being shortlisted, and—after reaching the top 10—were flown out to Alibaba HQ in Hangzhou, China. There, we had 2 days to network with AI experts & C-suite executives, learn about Alibaba's AI initiatives, and develop a presentation. We ended up securing second place!
+    • Designed an AR "view in your room" app to reduce purchase uncertainty in Southeast Asian e-commerce \u2014 built for Lazada integration using React and Google's AR model-viewer library.
+
+    • Placed 2nd out of 500+ global teams; pitched live at Alibaba HQ to 70+ engineers and executives, including C-suite leaders.
 `,
         coverImage: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alibaba/demo.jpg',
         screenshots: [
@@ -96,14 +65,11 @@ const projects: Project[] = [
             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alibaba/second.jpg', caption: `Our team posing for a photo with Carlos Barrrera (Lazada CEO) and Kaifu Zhang (Head of AI Initiative @ Alibaba)` },
             { url: 'https://davidbenjamin-portfolio.s3.us-east-1.amazonaws.com/alibaba/hq.jpg', caption: `GEC global finalists @ Alibaba HQ` },
         ],
-        technologies: ['Augmented Reality (AR)', 'React', 'Tailwind CSS'],
+        technologies: ['React', 'Google AR model-viewer'],
         category: 'AI/ML',
         githubUrl: 'https://github.com/DavidBenj15/gec-ar',
-        featured: true,
-        duration: '2 months',
         teamSize: '2',
         readMoreUrl: 'https://www.prnewswire.com/news-releases/alibaba-international-wraps-up-2024-global-e-commerce-challenge-highlighting-youth-innovation-302238056.html'
-        // demoUrl: 'https://youtu.be/k0s5DXZZuMM'
     },
     {
         id: 'baseball-analytics-platform',
@@ -114,7 +80,7 @@ const projects: Project[] = [
 
     • Solution: We built SLUGGER, the first centralized analytics platform for the ALPB. It enables discovery and use of analytical "widgets" powered by a Trackman-backed API and is expanding to integrate other data sources like PointStreak.
 
-    • API: SLUGGER’s core is a RESTful API, built with AWS Lambda and deployed via API Gateway. It offers 5 endpoints (Teams, Ballparks, Players, Games, Pitches) and an ETL pipeline that processes 60,000+ pitch events per game using batch processing and Pandas, delivering clean, structured data to analysts.
+    • API: SLUGGER's core is a RESTful API, built with AWS Lambda and deployed via API Gateway. It offers 5 endpoints (Teams, Ballparks, Players, Games, Pitches) and an ETL pipeline that processes 60,000+ pitch events per game using batch processing and Pandas, delivering clean, structured data to analysts.
 
     • Web App: A widget dashboard lets ALPB personnel access, filter, and favorite analytical tools built on the API. Teams can register, manage members, and launch widgets such as lineup optimization and pitch analysis.
 
@@ -132,7 +98,6 @@ const projects: Project[] = [
         technologies: ['AWS API Gateway', 'AWS Lambda', 'Pandas', 'PostgreSQL', 'Next.js', 'Docker'],
         category: 'Full Stack',
         githubUrl: 'https://github.com/DavidBenj15/alpb-website',
-        featured: true,
         duration: '12 months',
         teamSize: '9',
         // achievements: [
@@ -198,49 +163,23 @@ export default function ProjectsContent() {
     return (
         <div className="space-y-16">
             {/* Header Section */}
-            <div className="text-center space-y-6">
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground glow-white-soft">
+            <div className="space-y-6">
+                <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-foreground glow-white-soft">
                     Projects
                 </h1>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                    Note: I'm currently working on adding more of my projects to this page. Check back later for more!
-                </p>
             </div>
 
-            {/* Featured Projects Grid */}
-            <div className="space-y-12">
-                <h2 className="text-2xl font-semibold text-primary text-center">
-                    Featured Projects
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.filter(p => p.featured).map((project) => (
-                        <ProjectCard 
-                            key={project.id} 
-                            project={project} 
-                            onClick={() => handleProjectClick(project)}
-                            getCategoryColor={getCategoryColor}
-                            onViewDetails={handleProjectClick}
-                        />
-                    ))}
-                </div>
-            </div>
-
-            {/* All Projects Grid */}
-            <div className="space-y-12">
-                <h2 className="text-2xl font-semibold text-primary text-center">
-                    All Projects
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project) => (
-                        <ProjectCard 
-                            key={project.id} 
-                            project={project} 
-                            onClick={() => handleProjectClick(project)}
-                            getCategoryColor={getCategoryColor}
-                            onViewDetails={handleProjectClick}
-                        />
-                    ))}
-                </div>
+            {/* Projects Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {projects.map((project) => (
+                    <ProjectCard
+                        key={project.id}
+                        project={project}
+                        onClick={() => handleProjectClick(project)}
+                        getCategoryColor={getCategoryColor}
+                        onViewDetails={handleProjectClick}
+                    />
+                ))}
             </div>
 
             {/* Enhanced Project Detail Modal */}
@@ -261,16 +200,6 @@ export default function ProjectsContent() {
                                             {selectedProject?.category}
                                         </Chip>
                                     </div>
-                                    {selectedProject?.featured && (
-                                        <Chip 
-                                            color="warning"
-                                            variant="flat"
-                                            size="lg"
-                                            className="font-semibold"
-                                        >
-                                            ⭐ Featured
-                                        </Chip>
-                                    )}
                                 </div>
                                 
                                 {/* Project Meta Info */}
@@ -592,19 +521,6 @@ function ProjectCard({ project, onClick, getCategoryColor, onViewDetails }: Proj
                         {project.category}
                     </Chip>
                 </div>
-                {/* Featured badge */}
-                {project.featured && (
-                    <div className="absolute top-3 left-3">
-                        <Chip 
-                            color="warning"
-                            variant="flat"
-                            size="sm"
-                            className="backdrop-blur-sm bg-background/80"
-                        >
-                            ⭐ Featured
-                        </Chip>
-                    </div>
-                )}
             </div>
 
             {/* Project Info */}

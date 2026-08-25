@@ -1,170 +1,87 @@
 'use client'
 
-import Section from "@/components/ui/section";
-import Container from "./ui/container";
-import { Card, CardHeader, CardBody, CardFooter } from "@heroui/card";
-import { Divider } from "@heroui/divider";
 import { Chip } from "@heroui/chip";
-import { Accordion, AccordionItem } from "@heroui/accordion";
-import { Tooltip } from "@heroui/tooltip";
 
 
-const programmingLanguages = [
-    {
-        name: 'Python',
-        
-    },
-    {
-        name: 'Java',
-    },
-    {
-        name: 'JavaScript',
-    },
-    {
-        name: 'TypeScript',
-    },
-    {
-        name: 'C++',
-    },
-    {
-        name: 'C',
-    },
-    {
-        name: 'SQL',
-    },
-    {
-        name: 'Bash'
-    },
-    {
-        name: 'HTML/CSS'
-    }
+const languages = [
+    { name: 'Rust' },
+    { name: 'Python' },
+    { name: 'TypeScript' },
+    { name: 'JavaScript' },
+    { name: 'SQL' },
+    { name: 'Bash' },
+    { name: 'C' },
+    { name: 'C++' },
+    { name: 'Java' },
 ]
 
-const tools = [
-    {
-        name: 'Kubernetes'
-    },
-    {
-        name: 'Linux/Unix',
-    },
-    {
-        name: 'Git',
-    },
-    {
-        name: 'Docker',
-    },
-    {
-        name: 'GitHub',
-    },
-    {
-        name: 'Amazon Web Services (AWS)'
-    },
+const aiMl = [
+    { name: 'Vercel AI SDK' },
+    { name: 'pgvector' },
+    { name: 'scikit-learn' },
+    { name: 'Pandas' },
+    { name: 'NumPy' },
+    { name: 'Claude API' },
 ]
 
-const frameworks = [
-    {
-        name: 'React',
-    },
-    {
-        name: 'Next.js',
-    },
-    {
-        name: 'Tailwind CSS',
-    },
-    {
-        name: 'Node.js',
-    },
-    {
-        name: 'Pandas',
-    },
-    {
-        name: 'Flask',
-    },
-    {
-        name: 'Django',
-    },
-    {
-        name: 'FastAPI',
-    },
-    {
-        name: 'NumPy'
-    }
-]
-
-const methodologies = [
-    {
-        name: 'Object-Oriented Programming (OOP)',
-    },
-    {
-        name: 'Agile (Scrum)',
-    }, 
-    {
-        name: 'CI/CD (GitHub Actions)',
-    },
-    {
-        name: 'Microservices',
-    },
-    {
-        name: 'Testing (Unit, Integration, System, TDD)',
-    },
-    {
-        name: 'API Development',
-    },
+const infrastructure = [
+    { name: 'Kubernetes' },
+    { name: 'Docker' },
+    { name: 'AWS' },
+    { name: 'PostgreSQL' },
+    { name: 'Redis' },
+    { name: 'Linux/UNIX' },
+    { name: 'GitHub Actions' },
+    { name: 'Nginx' },
 ]
 
 const categories = [
     {
-        name: 'Programming Languages',
-        skills: programmingLanguages
+        name: 'Languages',
+        skills: languages
     },
     {
-        name: 'Tools & Platforms',
-        skills: tools
+        name: 'AI/ML',
+        skills: aiMl
     },
     {
-        name: 'Frameworks & Libraries',
-        skills: frameworks
+        name: 'Infrastructure',
+        skills: infrastructure
     },
-    {
-        name: 'Methodologies',
-        skills: methodologies
-    }
 ]
 
 
 const Skills = () => {
     return (
-        <Section id="about" className="" >
-            <Container>
-                <div className="space-y-8">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-                        Skills
-                    </h2>
+        <div className="space-y-12">
+            <div className="space-y-6">
+                <h1 className="text-4xl sm:text-5xl lg:text-8xl font-bold text-foreground glow-white-soft">
+                    Skills
+                </h1>
+            </div>
 
-                    <div className="space-y-10">
-                        {categories.map((category) => (
-                            <div key={category.name} className="space-y-4">
-                                <h3 className="text-lg sm:text-xl font-semibold text-foreground border-l-4 border-primary pl-4">
-                                    {category.name}
-                                </h3>
-                                <div className="flex flex-wrap gap-2.5 pl-4">
-                                    {category.skills.map((skill) => (
-                                        <Chip
-                                            key={skill.name}
-                                            className="cursor-pointer bg-muted text-foreground hover:bg-accent transition-all duration-200 hover:scale-105"
-                                            variant="solid"
-                                            size="md"
-                                        >
-                                            {skill.name}
-                                        </Chip>
-                                    ))}
-                                </div>
-                            </div>
-                        ))}
+            <div className="space-y-10">
+                {categories.map((category) => (
+                    <div key={category.name} className="space-y-4">
+                        <h3 className="text-lg sm:text-xl font-semibold text-foreground border-l-4 border-primary pl-4">
+                            {category.name}
+                        </h3>
+                        <div className="flex flex-wrap gap-2.5 pl-4">
+                            {category.skills.map((skill) => (
+                                <Chip
+                                    key={skill.name}
+                                    className="cursor-pointer bg-muted text-foreground hover:bg-accent transition-all duration-200 hover:scale-105"
+                                    variant="solid"
+                                    size="md"
+                                >
+                                    {skill.name}
+                                </Chip>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </Container>
-        </Section >
+                ))}
+            </div>
+        </div>
     )
 }
 
